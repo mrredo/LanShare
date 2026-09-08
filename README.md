@@ -36,3 +36,77 @@ Produkta aktualitāti veido arī nepieciešamība samazināt failu pārsūtīša
 
 ### Produkta pieejamības nodrošināšanas iespējas
 [Apraksti, kā lietotājs varēs piekļūt produktam un kā tiks nodrošināta tā pieejamība.]
+
+## Prasību specifikācija
+
+### Sistēmas funkcionālās prasības
+
+#### 1. Failu augšupielāde
+[Apraksti, kā lietotājs izvēlas failu un augšupielādē to serverī.]
+
+**Ievades dati:** [Kādi dati tiek ievadīti?]  
+**Apstrāde:** [Kas notiek ar failu?]  
+**Rezultāts:** [Kas notiek pēc veiksmīgas augšupielādes?]
+
+#### 2. Failu lejupielāde
+[Apraksti, kā lietotājs izvēlas un lejupielādē failu.]
+
+**Ievades dati:** [Kādi dati tiek ievadīti?]  
+**Apstrāde:** [Kā serveris apstrādā pieprasījumu?]  
+**Rezultāts:** [Kāds ir rezultāts lietotājam?]
+
+#### 3. Failu dzēšana
+[Apraksti, kā lietotājs var dzēst failus.]
+
+**Ievades dati:** [Kā tiek norādīts dzēšamais fails?]  
+**Apstrāde:** [Kas notiek serverī?]  
+**Rezultāts:** [Kas notiek pēc dzēšanas?]
+
+#### 4. Failu saraksta apskate
+[Apraksti, kā lietotājs var apskatīt serverī pieejamos failus.]
+
+**Ievades dati:** [Vai nepieciešama kāda lietotāja darbība?]  
+**Apstrāde:** [Kā tiek iegūts failu saraksts?]  
+**Rezultāts:** [Kāda informācija tiek parādīta?]
+
+#### 5. [Papildu funkcionalitāte]
+[Apraksti vēl vienu produkta funkciju.]
+
+**Ievades dati:** [Ievades dati]  
+**Apstrāde:** [Apstrādes process]  
+**Rezultāts:** [Rezultāts]
+
+#### 6. [Papildu funkcionalitāte]
+[Apraksti vēl vienu produkta funkciju.]
+
+**Ievades dati:** [Ievades dati]  
+**Apstrāde:** [Apstrādes process]  
+**Rezultāts:** [Rezultāts]
+
+### Sistēmas galvenā funkcionalitāte
+[Šeit pilnībā apraksti produkta galveno funkcionalitāti un galvenās darbības, ko lietotājs var veikt.]
+
+### Sistēmas papildfunkcionalitāte
+[Šeit pilnībā apraksti produkta papildfunkcijas.]
+
+---
+
+## Sistēmas nefunkcionālās prasības
+
+### Darbības vides prasības
+[Apraksti nepieciešamo programmatūru un aparatūru, piemēram, operētājsistēmu, tīkla savienojumu, servera prasības, klienta ierīces u.c.]
+
+### Drošība, datu aizsardzība un uzticamība
+[Apraksti, kā tiks aizsargāti dati, kā tiks ierobežota piekļuve un kā tiks nodrošināta sistēmas uzticamība.]
+
+### Saskarne un dizains
+[Apraksti lietotāja saskarni, tās valodu, dizaina prasības, lietojamību un responsivitāti.]
+
+### Veiktspēja
+[Apraksti prasības sistēmas ātrumam, piemēram, failu augšupielādes/lejupielādes ātrumam, atbildes laikam un vienlaicīgo lietotāju skaitam.]
+
+### Galvenās nefunkcionālās prasības
+[Šeit pilnībā apraksti produkta galvenās nefunkcionālās prasības.]
+
+### Papildu nefunkcionālās prasības
+[Šeit pilnībā apraksti produkta papildu nefunkcionālās prasības.]
