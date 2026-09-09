@@ -1,4 +1,4 @@
-# LAN File Sharing Server
+# LanShare
 
 ## Ievads
 ### Aprakstītā situācija pirms produkta izveides
