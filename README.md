@@ -18,7 +18,7 @@ Produkta aktualitāti veido arī nepieciešamība samazināt failu pārsūtīša
 ## Uzdevuma formulējums
 
 ### Produkta nosaukums un veids
-LanShare
+**LanShare**
 
 Tīmekļa lietotne un serveris.
 
