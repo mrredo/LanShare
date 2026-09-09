@@ -30,7 +30,7 @@ Problēma ir tāda, ka šim nolūkam bieži tiek izmantoti dažādi ārējie pak
 LanShare mērķis ir padarīt informācijas pārsūtīšanu starp ierīcēm ātru, drošu un vieglu, izmantojot lokālo tīklu.
 
 ### Produkta mērķauditorija
-[Apraksti, kam produkts ir paredzēts un kas to izmantos.]
+LanShare mērķauditorija ir skolēni, skolotāji, darbinieki utt. - visi, kuri izmanto vairākas ierīces un kuriem ir nepieciešamība pārvietot informāciju no vienas ierīces uz otru.
 
 ### Produktā realizēšanai nepieciešamie elementi
 [Uzskaiti nepieciešamās programmēšanas/sistēmas sastāvdaļas, tehnoloģijas, apakšsistēmas u.c.]
