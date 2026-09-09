@@ -15,6 +15,7 @@ Tāpēc ir nepieciešams vienkāršs, ātrs un drošs risinājums, kas ļautu p�
 Mūsdienās cilvēki ikdienā izmanto vairākas elektroniskās ierīces, piemēram, datorus un viedtālruņus, tāpēc nepieciešamība pārsūtīt failus starp ierīcēm ir aktuāla. Piemēram, lietotājs var atrast nepieciešamo informāciju telefonā, bet prezentāciju vai dokumentu veidot datorā, tādēļ informācija ir nepieciešama abās ierīcēs.
 
 Produkta aktualitāti veido arī nepieciešamība samazināt failu pārsūtīšanas laikā radīto nevajadzīgo darbību un mentālo slogu. Lietotājam nav jādomā, kur atrast vadu, kuru pakalpojumu izmantot vai kā augšupielādēt un pēc tam lejupielādēt failu. Izmantojot lokālo tīklu, failus iespējams pārsūtīt ātri un bez nepieciešamības tos nosūtīt caur serveriem, tādējādi samazinot iespēju, ka tiem piekļūst trešās personas.
+
 ## Uzdevuma formulējums
 
 ### Produkta nosaukums un veids
@@ -33,10 +34,30 @@ LanShare mērķis ir padarīt informācijas pārsūtīšanu starp ierīcēm ātr
 LanShare mērķauditorija ir skolēni, skolotāji, darbinieki utt. - visi, kuri izmanto vairākas ierīces un kuriem ir nepieciešamība pārvietot informāciju no vienas ierīces uz otru.
 
 ### Produktā realizēšanai nepieciešamie elementi
-[Uzskaiti nepieciešamās programmēšanas/sistēmas sastāvdaļas, tehnoloģijas, apakšsistēmas u.c.]
+
+Tehnoloģijas:
+
+* Go
+* React
+* TypeScript
+* HTML
+* CSS
+
+Sistēmas sastāvdaļas:
+
+* Go serveris
+* React tīmekļa lietotne
+* MySQL datubāzes serveris
 
 ### Produkta darbības nodrošināšana
-[Apraksti, kas nepieciešams, lai produkts darbotos, piemēram, serveris, lokālais tīkls, datubāze, operētājsistēma, interneta savienojums u.c.]
+
+Lai produkts darbotos, nepieciešams:
+
+* Lokālais tīkls (rūteris vai ierīces, kas savienotas vienā tīklā)
+* Ierīce, uz kuras darbojas Go serveris
+* Internetpārlūks
+* MySQL datubāzes serveris
+
 
 ### Produkta pieejamības nodrošināšanas iespējas
 [Apraksti, kā lietotājs varēs piekļūt produktam un kā tiks nodrošināta tā pieejamība.]
