@@ -45,7 +45,7 @@ Tehnoloģijas:
 
 Sistēmas sastāvdaļas:
 
-* Go serveris
+* Go serveris ar iebūvētu mDNS servisu
 * React tīmekļa lietotne
 * MySQL datubāzes serveris
 
@@ -55,12 +55,13 @@ Lai produkts darbotos, nepieciešams:
 
 * Lokālais tīkls (rūteris vai ierīces, kas savienotas vienā tīklā)
 * Ierīce, uz kuras darbojas Go serveris
-* Internetpārlūks
+* Interneta pārlūks
 * MySQL datubāzes serveris
 
-
 ### Produkta pieejamības nodrošināšanas iespējas
-[Apraksti, kā lietotājs varēs piekļūt produktam un kā tiks nodrošināta tā pieejamība.]
+
+Kad tiek ieslēgts LanShare serveris, lietotāji, kas atrodas tajā pašā lokālajā tīklā, varēs, izmantojot interneta pārlūku, pieslēgties `lanshare.local` tīmekļa lietotnei un veikt failu augšupielādi, lejupielādi un koplietošanu. Servera automātisku atrašanu lokālajā tīklā nodrošinās Go aplikācijā iebūvētais mDNS serviss, tāpēc lietotājam nebūs nepieciešams zināt servera IP adresi.
+
 
 ## Prasību specifikācija
 
