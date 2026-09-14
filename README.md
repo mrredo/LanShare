@@ -67,26 +67,118 @@ Kad tiek ieslēgts LanShare serveris, lietotāji, kas atrodas tajā pašā lokā
 
 ### Sistēmas funkcionālās prasības
 
-#### 1. Failu augšupielāde
-[Apraksti, kā lietotājs izvēlas failu un augšupielādē to serverī.]
+#### Ierīces identifikators
 
-**Ievades dati:** [Kādi dati tiek ievadīti?]  
-**Apstrāde:** [Kas notiek ar failu?]  
-**Rezultāts:** [Kas notiek pēc veiksmīgas augšupielādes?]
+Sistēmā **ierīces identifikators ir ierīces MAC adrese**. Tā tiek izmantota, lai identificētu konkrētu ierīci un noteiktu tās piekļuves tiesības failiem.
+
+#### 1. Failu augšupielāde
+
+Lietotājs izvēlas failu savā ierīcē, pēc izvēles ievada papildu informāciju un norāda, kurām ierīcēm fails būs pieejams. Lietotājs var arī norādīt faila derīguma termiņu. Pēc augšupielādes fails tiek nosūtīts uz serveri un saglabāts.
+
+**Ievades dati:**
+
+* **Fails** — lietotāja izvēlētais fails, kuru nepieciešams augšupielādēt.
+* **Teksts** — lietotāja ievadīts teksts, kas tiek pievienots failam.
+* **URL** — saite, kas saistīta ar augšupielādēto failu.
+* **Visas ierīces** — norāda, vai failam ir atļauts piekļūt visām ierīcēm.
+* **Atļautās ierīces** — to ierīču MAC adreses, kurām ir atļauts piekļūt failam.
+* **Derīguma termiņš** — datums un laiks, līdz kuram fails ir pieejams sistēmā.
+
+**Apstrāde:**
+
+Fails tiek saglabāts serverī. Pārējie ievades dati tiek saglabāti datubāzē un failam tiek piešķirts unikāls identifikators.
+
+Serveris saglabā arī faila derīguma termiņu. Kamēr derīguma termiņš nav beidzies, fails ir pieejams atbilstoši tam noteiktajām piekļuves tiesībām.
+
+Kad faila derīguma termiņš ir beidzies, fails tiek automātiski dzēsts no servera un ar to saistītā informācija tiek dzēsta no datubāzes.
+
+**Rezultāts:**
+
+###### Ja augšupielāde ir veiksmīga
+
+Lietotājam tiek atgriezts apstiprinājums par veiksmīgu augšupielādi un saite, ar kuru iespējams piekļūt augšupielādētajam failam:
+
+```json
+{
+  "success": true,
+  "message": "Fails tika veiksmīgi augšupielādēts",
+  "download_url": "http://lanshare.local/uploads/H8e1Ja2"
+}
+```
+
+Lietotājs saņem apstiprinājumu, ka fails ir veiksmīgi augšupielādēts, un var dalīties ar piekļuves saiti.
+
+###### Ja augšupielāde nav veiksmīga
+
+Lietotājam tiek atgriezts kļūdas paziņojums:
+
+```json
+{
+  "success": false,
+  "message": "Kaut kas nogāja greizi."
+}
+```
+
+Lietotājs saņem kļūdas paziņojumu un rīkojas atbilstoši norādījumiem.
 
 #### 2. Failu lejupielāde
-[Apraksti, kā lietotājs izvēlas un lejupielādē failu.]
 
-**Ievades dati:** [Kādi dati tiek ievadīti?]  
-**Apstrāde:** [Kā serveris apstrādā pieprasījumu?]  
-**Rezultāts:** [Kāds ir rezultāts lietotājam?]
+Lietotājs atver interneta pārlūkā `lanshare.local`.
+
+Lietotājam tiek parādītas sadaļas `Mani faili` un `Ar mani koplietotie faili`.
+
+Sadaļā `Ar mani koplietotie faili` lietotājs uzspiež lejupielādēšanas pogu vai uzspiež uz faila. Kad tiek uzspiests uz faila, lietotājs tiek pārvirzīts uz `lanshare.local/uploads/{id}`, kur ir pieejama lejupielādēšanas poga.
+
+**Ievades dati:**
+
+* **Ierīces identifikators** — lietotāja ierīces MAC adrese.
+* **Faila identifikators** — unikāls identifikators, kas norāda, kuru failu lietotājs vēlas lejupielādēt.
+
+**Apstrāde:**
+
+Serveris pārbauda lietotāja ierīces MAC adresi, faila piekļuves atļaujas un to, vai faila derīguma termiņš nav beidzies.
+
+Ja MAC adrese ir norādīta kā viena no failam atļautajām ierīcēm vai failam ir atļauta piekļuve visām ierīcēm un faila derīguma termiņš nav beidzies, serveris atļauj faila lejupielādi.
+
+Ja ierīcei nav piekļuves tiesību vai faila derīguma termiņš ir beidzies, faila lejupielāde tiek atteikta.
+
+**Rezultāts:**
+
+Ja ierīcei ir piekļuve failam un tā derīguma termiņš nav beidzies, lietotājs saņem pieprasīto failu.
+
+Ja ierīcei nav piekļuves failam vai tā derīguma termiņš ir beidzies, lietotājs saņem kļūdas paziņojumu.
 
 #### 3. Failu dzēšana
-[Apraksti, kā lietotājs var dzēst failus.]
 
-**Ievades dati:** [Kā tiek norādīts dzēšamais fails?]  
-**Apstrāde:** [Kas notiek serverī?]  
-**Rezultāts:** [Kas notiek pēc dzēšanas?]
+Lietotājs atver interneta pārlūkā `lanshare.local`.
+
+Lietotājam tiek parādītas sadaļas `Mani faili` un `Ar mani koplietotie faili`.
+
+Sadaļā `Mani faili` lietotājs izvēlas failu un nospiež dzēšanas pogu. Dzēšanas poga ir pieejama arī konkrētā faila lapā.
+
+Pēc dzēšanas pogas nospiešanas lietotājam tiek parādīts apstiprinājums, ka fails tiks neatgriezeniski dzēsts.
+
+**Ievades dati:**
+
+* **Ierīces identifikators** — lietotāja ierīces MAC adrese.
+* **Faila identifikators** — unikāls identifikators, kas norāda dzēšamo failu.
+
+**Apstrāde:**
+
+Serveris pārbauda, vai lietotāja ierīcei ir tiesības dzēst norādīto failu.
+
+Ja lietotājam ir tiesības dzēst failu un dzēšana ir apstiprināta, serveris dzēš failu no servera un ar to saistītos datus no datubāzes.
+
+Ja lietotājam nav tiesību dzēst failu, dzēšana netiek veikta un lietotājam tiek parādīts kļūdas paziņojums.
+
+Faila automātiska dzēšana pēc derīguma termiņa beigām notiek neatkarīgi no manuālās dzēšanas funkcijas.
+
+**Rezultāts:**
+
+Ja dzēšana ir veiksmīga, fails un ar to saistītie dati tiek neatgriezeniski dzēsti. Fails vairs nav redzams sadaļā `Mani faili` un nav pieejams, izmantojot tā iepriekšējo saiti.
+
+Ja dzēšana nav veiksmīga, fails netiek dzēsts un lietotājam tiek parādīts kļūdas paziņojums.
+
 
 #### 4. Failu saraksta apskate
 [Apraksti, kā lietotājs var apskatīt serverī pieejamos failus.]
