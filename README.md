@@ -1,102 +1,178 @@
 # LanShare
 
 ## Ievads
+
 ### Aprakstītā situācija pirms produkta izveides
 
-Pirms šī produkta izveides, lai pārsūtītu failus starp telefonu un datoru, bija nepieciešams izmantot vadu, kas savieno abas ierīces, vai arī internetā pieejamus pakalpojumus, piemēram, Google Drive, Discord vai WhatsApp. Šīs metodes ne vienmēr ir ērtas un efektīvas. Izmantojot vadu, var būt sarežģīti atrast un pārvaldīt nepieciešamos failus, savukārt interneta pakalpojumu izmantošanas gadījumā failu pārsūtīšanas ātrumu ietekmē interneta savienojuma ātrums. Īpaši neērti tas ir, pārsūtot lielus failus. Turklāt, izmantojot interneta pakalpojumus, faili tiek pārsūtīti caur ārējiem serveriem, kas var radīt papildu privātuma un drošības riskus. Ja nav pieejams interneta savienojums, interneta pakalpojumu izmantošana nav iespējama, tāpēc atliek izmantot vadu savienojumu, kas ne vienmēr ir ērts un praktisks.
+Lai pārsūtītu failus starp telefonu, datoru un citām ierīcēm, parasti tiek izmantots vads, mākoņpakalpojums vai ziņapmaiņas lietotne. Vada izmantošana ne vienmēr ir ērta, savukārt mākoņpakalpojumiem un ziņapmaiņas lietotnēm nepieciešams interneta savienojums un faili tiek pārsūtīti caur ārējiem serveriem.
+
+Tas nav ērti, kad ir jāpārsūta lieli faili, kad interneta savienojums nav pieejams vai ir ļoti lēns.
 
 ### Pamatota produkta nepieciešamība
-Failu pārsūtīšana no vienas ierīces uz citu ir bieži nepieciešama, piemēram, pārsūtot attēlus, dokumentus, prezentācijas vai citus failus starp telefonu un datoru. Pašlaik šim nolūkam tiek izmantoti dažādi risinājumi, piemēram, vadu savienojumi, Google Drive, Discord un WhatsApp. Tomēr šīm metodēm ir dažādi trūkumi – vada izmantošana nav vienmēr ērta, savukārt interneta pakalpojumu izmantošanai nepieciešams interneta savienojums un faili tiek sūtīti uz dažādiem serveriem, par kuriem tev nav nekādas piekļuves.
 
-Tāpēc ir nepieciešams vienkāršs, ātrs un drošs risinājums, kas ļautu pārsūtīt failus tieši starp ierīcēm, izmantojot lokālo tīklu, bez nepieciešamības izmantot ārējus pakalpojumus.
+Failu pārsūtīšana starp vairākām ierīcēm ir bieža darbība. LanShare nodrošina vienkāršāku risinājumu, ļaujot pārsūtīt failus tieši lokālajā tīklā bez ārējiem failu glabāšanas pakalpojumiem.
 
 ### Pamatota produkta aktualitāte
 
-Mūsdienās cilvēki ikdienā izmanto vairākas elektroniskās ierīces, piemēram, datorus un viedtālruņus, tāpēc nepieciešamība pārsūtīt failus starp ierīcēm ir aktuāla. Piemēram, lietotājs var atrast nepieciešamo informāciju telefonā, bet prezentāciju vai dokumentu veidot datorā, tādēļ informācija ir nepieciešama abās ierīcēs.
+Cilvēki ikdienā izmanto vairākas elektroniskās ierīces, tāpēc nepieciešamība pārsūtīt informāciju starp tām ir aktuāla.
 
-Produkta aktualitāti veido arī nepieciešamība samazināt failu pārsūtīšanas laikā radīto nevajadzīgo darbību un mentālo slogu. Lietotājam nav jādomā, kur atrast vadu, kuru pakalpojumu izmantot vai kā augšupielādēt un pēc tam lejupielādēt failu. Izmantojot lokālo tīklu, failus iespējams pārsūtīt ātri un bez nepieciešamības tos nosūtīt caur serveriem, tādējādi samazinot iespēju, ka tiem piekļūst trešās personas.
+LanShare ļauj failus pārsūtīt lokālajā tīklā, neizmantojot vadus vai ārējus failu pārsūtīšanas pakalpojumus.
 
 ## Uzdevuma formulējums
 
 ### Produkta nosaukums un veids
+
 **LanShare**
 
 Tīmekļa lietotne un serveris.
 
 ### Produkta izstrādes mērķis un pamatojums
-Mūsdienās bieži rodas nepieciešamība pārsūtīt failus, tekstu, attēlus un citu informāciju no vienas ierīces uz citu.
 
-Problēma ir tāda, ka šim nolūkam bieži tiek izmantoti dažādi ārējie pakalpojumi, piemēram, Google Drive, Discord, WhatsApp vai USB zibatmiņas. Tas var prasīt faila augšupielādi internetā, papildu darbības vai fizisku datu nesēju.
-
-LanShare mērķis ir padarīt informācijas pārsūtīšanu starp ierīcēm ātru, drošu un vieglu, izmantojot lokālo tīklu.
+LanShare mērķis ir nodrošināt vienkāršu failu, teksta un saišu pārsūtīšanu starp ierīcēm, izmantojot lokālo tīklu.
 
 ### Produkta mērķauditorija
-LanShare mērķauditorija ir skolēni, skolotāji, darbinieki utt. - visi, kuri izmanto vairākas ierīces un kuriem ir nepieciešamība pārvietot informāciju no vienas ierīces uz otru.
+
+LanShare mērķauditorija ir skolēni, skolotāji, darbinieki un citi lietotāji, kuri izmanto vairākas ierīces un vēlas pārsūtīt informāciju starp tām.
 
 ### Produktā realizēšanai nepieciešamie elementi
 
-Tehnoloģijas:
+**Tehnoloģijas:**
 
 * Go
 * React
 * TypeScript
 * HTML
 * CSS
+* SQLite
 
-Sistēmas sastāvdaļas:
+**Sistēmas sastāvdaļas:**
 
-* Go serveris ar iebūvētu mDNS servisu
-* React tīmekļa lietotne
-* MySQL datubāzes serveris
+* Go serveris ar iebūvētu mDNS servisu;
+* React tīmekļa lietotne;
+* SQLite datubāze;
+* failu glabāšanas mape serverī.
 
 ### Produkta darbības nodrošināšana
 
 Lai produkts darbotos, nepieciešams:
 
-* Lokālais tīkls (rūteris vai ierīces, kas savienotas vienā tīklā)
-* Ierīce, uz kuras darbojas Go serveris
-* Interneta pārlūks
-* MySQL datubāzes serveris
+* lokālais tīkls ar vismaz 100 Mbit/s savienojuma ātrumu;
+* ierīce ar Windows vai Linux operētājsistēmu;
+* vismaz 2 GB RAM;
+* vismaz 1 GB brīvas vietas programmas un datubāzes darbībai;
+* pietiekama papildu vieta failu glabāšanai;
+* mūsdienīgs interneta pārlūks, piemēram, Google Chrome, Mozilla Firefox, Microsoft Edge vai Safari.
+
+SQLite datubāzei nav nepieciešams atsevišķs datubāzes serveris. Failu glabāšanai nepieciešamā diska vieta ir atkarīga no administratora konfigurētā glabāšanas limita un augšupielādēto failu apjoma.
+
 
 ### Produkta pieejamības nodrošināšanas iespējas
 
-Kad tiek ieslēgts LanShare serveris, lietotāji, kas atrodas tajā pašā lokālajā tīklā, varēs, izmantojot interneta pārlūku, pieslēgties `lanshare.local` tīmekļa lietotnei un veikt failu augšupielādi, lejupielādi un koplietošanu. Servera automātisku atrašanu lokālajā tīklā nodrošinās Go aplikācijā iebūvētais mDNS serviss, tāpēc lietotājam nebūs nepieciešams zināt servera IP adresi.
+Kad tiek ieslēgts LanShare serveris, lokālā tīkla lietotāji var piekļūt tīmekļa lietotnei, izmantojot `lanshare.local`.
 
+Servera atrašanu nodrošina Go aplikācijā iebūvētais mDNS serviss.
 
-## Prasību specifikācija
+---
 
-### Sistēmas funkcionālās prasības
+# Prasību specifikācija
 
-#### Ierīces identifikators
+## Sistēmas funkcionālās prasības
 
-Sistēmā **ierīces identifikators ir ierīces MAC adrese**. Tā tiek izmantota, lai identificētu konkrētu ierīci un noteiktu tās piekļuves tiesības failiem.
+### Sistēmas lomas
 
-#### 1. Failu augšupielāde
+LanShare sistēmā ir divas lomas:
 
-Lietotājs izvēlas failu savā ierīcē, pēc izvēles ievada papildu informāciju un norāda, kurām ierīcēm fails būs pieejams. Lietotājs var arī norādīt faila derīguma termiņu. Pēc augšupielādes fails tiek nosūtīts uz serveri un saglabāts.
+* **Lietotājs** — var augšupielādēt, lejupielādēt, koplietot un dzēst savus failus.
+* **Administrators** — papildus lietotāja funkcijām var pārvaldīt visus failus, servera konfigurāciju un augšupielādes iespējas.
+
+Lietotāja faili tiek sasaistīti ar pārlūkprogrammas cookie. Administratora piekļuve tiek aizsargāta ar administratora paroli.
+
+### 1. Pieslēgšanās sistēmai
+
+Lietotājs savā ierīcē atver `lanshare.local`.
+
+Pirmajā pieslēgšanās reizē serveris pārbauda, vai pārlūkprogrammā ir LanShare cookie.
 
 **Ievades dati:**
 
-* **Fails** — lietotāja izvēlētais fails, kuru nepieciešams augšupielādēt.
-* **Teksts** — lietotāja ievadīts teksts, kas tiek pievienots failam.
-* **URL** — saite, kas saistīta ar augšupielādēto failu.
-* **Visas ierīces** — norāda, vai failam ir atļauts piekļūt visām ierīcēm.
-* **Atļautās ierīces** — to ierīču MAC adreses, kurām ir atļauts piekļūt failam.
-* **Derīguma termiņš** — datums un laiks, līdz kuram fails ir pieejams sistēmā.
+* **Ierīces cookie** — unikāls identifikators konkrētai pārlūkprogrammai.
 
 **Apstrāde:**
 
-Fails tiek saglabāts serverī. Pārējie ievades dati tiek saglabāti datubāzē un failam tiek piešķirts unikāls identifikators.
+Ja cookie neeksistē, serveris ģenerē jaunu unikālu identifikatoru un saglabā to pārlūkprogrammā.
 
-Serveris saglabā arī faila derīguma termiņu. Kamēr derīguma termiņš nav beidzies, fails ir pieejams atbilstoši tam noteiktajām piekļuves tiesībām.
+Ja cookie eksistē, tas tiek izmantots lietotāja failu noteikšanai.
 
-Kad faila derīguma termiņš ir beidzies, fails tiek automātiski dzēsts no servera un ar to saistītā informācija tiek dzēsta no datubāzes.
+Cookie netiek izmantots administratora autentifikācijai.
 
 **Rezultāts:**
 
-###### Ja augšupielāde ir veiksmīga
+Lietotājs var izmantot LanShare un redzēt savus failus.
 
-Lietotājam tiek atgriezts apstiprinājums par veiksmīgu augšupielādi un saite, ar kuru iespējams piekļūt augšupielādētajam failam:
+### 2. Administratora sākotnējā konfigurācija
+
+Pirmo reizi startējot LanShare serveri, tiek pārbaudīts, vai administratora parole jau ir iestatīta.
+
+Ja parole nav iestatīta, serveris pieprasa to ievadīt.
+
+**Ievades dati:**
+
+* **Administratora parole** — parole administrācijas sadaļas aizsardzībai.
+
+**Apstrāde:**
+
+Serveris pārbauda ievadīto paroli un saglabā tās hešu SQLite datubāzē. Pati parole datubāzē netiek saglabāta.
+
+
+**Rezultāts:**
+
+Administrators var autentificēties administrācijas sadaļā `lanshare.local/admin`.
+
+### 3. Administratora autentifikācija
+
+Administrators atver `lanshare.local/admin` un ievada administratora paroli.
+
+**Ievades dati:**
+
+* **Administratora parole**
+
+**Apstrāde:**
+
+Serveris pārbauda ievadīto paroli.
+
+Ja parole ir pareiza, tiek izveidota administratora sesija.
+
+Ja parole nav pareiza, piekļuve administrācijas sadaļai tiek atteikta.
+
+**Rezultāts:**
+
+Pēc veiksmīgas autentifikācijas serveris izveido administratora sesiju un saglabā tās identifikatoru atsevišķā administratora cookie. Pēc tam administrators var izmantot administrācijas funkcijas.
+
+
+### 4. Failu augšupielāde
+
+Lietotājs izvēlas failu un pēc izvēles pievieno tekstu, URL un derīguma termiņu.
+
+**Ievades dati:**
+
+* **Fails**
+* **Teksts**
+* **URL**
+* **Derīguma termiņš**
+* **Ierīces cookie**
+
+**Apstrāde:**
+
+Serveris pārbauda, vai failu augšupielāde ir atļauta, vai nav pārsniegts maksimālais faila izmērs un vai ir pietiekami daudz brīvas vietas.
+
+Ja failu glabāšanas mape neeksistē, serveris pārbauda konfigurācijā norādīto mapes atrašanās vietu. Ja atrašanās vieta nav norādīta, serveris izveido noklusējuma `/uploads` direktoriju.
+Fails tiek saglabāts serverī, bet tā metadati tiek saglabāti SQLite datubāzē.
+
+Failam tiek piešķirts unikāls identifikators un tā īpašnieka cookie identifikators.
+
+**Rezultāts:**
+
+Lietotājam tiek atgriezta faila koplietošanas saite.
 
 ```json
 {
@@ -106,11 +182,7 @@ Lietotājam tiek atgriezts apstiprinājums par veiksmīgu augšupielādi un sait
 }
 ```
 
-Lietotājs saņem apstiprinājumu, ka fails ir veiksmīgi augšupielādēts, un var dalīties ar piekļuves saiti.
-
-###### Ja augšupielāde nav veiksmīga
-
-Lietotājam tiek atgriezts kļūdas paziņojums:
+Ja augšupielāde neizdodas:
 
 ```json
 {
@@ -119,144 +191,311 @@ Lietotājam tiek atgriezts kļūdas paziņojums:
 }
 ```
 
-Lietotājs saņem kļūdas paziņojumu un rīkojas atbilstoši norādījumiem.
+### 5. Failu lejupielāde
 
-#### 2. Failu lejupielāde
-
-Lietotājs atver interneta pārlūkā `lanshare.local`.
-
-Lietotājam tiek parādītas sadaļas `Mani faili` un `Ar mani koplietotie faili`.
-
-Sadaļā `Ar mani koplietotie faili` lietotājs uzspiež lejupielādēšanas pogu vai uzspiež uz faila. Kad tiek uzspiests uz faila, lietotājs tiek pārvirzīts uz `lanshare.local/uploads/{id}`, kur ir pieejama lejupielādēšanas poga.
+Lietotājs atver faila koplietošanas saiti.
 
 **Ievades dati:**
 
-* **Ierīces identifikators** — lietotāja ierīces MAC adrese.
-* **Faila identifikators** — unikāls identifikators, kas norāda, kuru failu lietotājs vēlas lejupielādēt.
+* **Faila identifikators**
 
 **Apstrāde:**
 
-Serveris pārbauda lietotāja ierīces MAC adresi, faila piekļuves atļaujas un to, vai faila derīguma termiņš nav beidzies.
+Serveris atrod faila informāciju SQLite datubāzē un pārbauda, vai tā derīguma termiņš nav beidzies.
+Ja derīguma termiņš ir beidzies, fails tiek dzēsts no servera un datubāzes.
 
-Ja MAC adrese ir norādīta kā viena no failam atļautajām ierīcēm vai failam ir atļauta piekļuve visām ierīcēm un faila derīguma termiņš nav beidzies, serveris atļauj faila lejupielādi.
-
-Ja ierīcei nav piekļuves tiesību vai faila derīguma termiņš ir beidzies, faila lejupielāde tiek atteikta.
+Ja fails ir pieejams, tas tiek nosūtīts lietotājam.
 
 **Rezultāts:**
 
-Ja ierīcei ir piekļuve failam un tā derīguma termiņš nav beidzies, lietotājs saņem pieprasīto failu.
+Lietotājs saņem failu.
 
-Ja ierīcei nav piekļuves failam vai tā derīguma termiņš ir beidzies, lietotājs saņem kļūdas paziņojumu.
+### 6. Failu dzēšana
 
-#### 3. Failu dzēšana
-
-Lietotājs atver interneta pārlūkā `lanshare.local`.
-
-Lietotājam tiek parādītas sadaļas `Mani faili` un `Ar mani koplietotie faili`.
-
-Sadaļā `Mani faili` lietotājs izvēlas failu un nospiež dzēšanas pogu. Dzēšanas poga ir pieejama arī konkrētā faila lapā.
-
-Pēc dzēšanas pogas nospiešanas lietotājam tiek parādīts apstiprinājums, ka fails tiks neatgriezeniski dzēsts.
+Lietotājs sadaļā `Mani faili` izvēlas savu failu un apstiprina tā dzēšanu.
 
 **Ievades dati:**
 
-* **Ierīces identifikators** — lietotāja ierīces MAC adrese.
-* **Faila identifikators** — unikāls identifikators, kas norāda dzēšamo failu.
+* **Faila identifikators**
+* **Ierīces cookie**
 
 **Apstrāde:**
 
-Serveris pārbauda, vai lietotāja ierīcei ir tiesības dzēst norādīto failu.
+Serveris pārbauda, vai faila īpašnieka cookie sakrīt ar pašreizējās pārlūkprogrammas cookie.
 
-Ja lietotājam ir tiesības dzēst failu un dzēšana ir apstiprināta, serveris dzēš failu no servera un ar to saistītos datus no datubāzes.
-
-Ja lietotājam nav tiesību dzēst failu, dzēšana netiek veikta un lietotājam tiek parādīts kļūdas paziņojums.
-
-Faila automātiska dzēšana pēc derīguma termiņa beigām notiek neatkarīgi no manuālās dzēšanas funkcijas.
+Administratoram ir tiesības dzēst jebkuru failu neatkarīgi no tā īpašnieka.
+Ja tie sakrīt, fails tiek dzēsts no servera un tā ieraksts no SQLite datubāzes.
 
 **Rezultāts:**
 
-Ja dzēšana ir veiksmīga, fails un ar to saistītie dati tiek neatgriezeniski dzēsti. Fails vairs nav redzams sadaļā `Mani faili` un nav pieejams, izmantojot tā iepriekšējo saiti.
+Fails vairs nav pieejams.
 
-Ja dzēšana nav veiksmīga, fails netiek dzēsts un lietotājam tiek parādīts kļūdas paziņojums.
+### 7. Failu saraksta apskate
 
+Lietotājs atver `lanshare.local`.
 
-#### 4. Failu saraksta apskate
-[Apraksti, kā lietotājs var apskatīt serverī pieejamos failus.]
+Sadaļā `Mani faili` tiek parādīti faili, kuru īpašnieka cookie sakrīt ar pašreizējās pārlūkprogrammas cookie.
 
-**Ievades dati:** [Vai nepieciešama kāda lietotāja darbība?]  
-**Apstrāde:** [Kā tiek iegūts failu saraksts?]  
-**Rezultāts:** [Kāda informācija tiek parādīta?]
+Failu sarakstā tiek parādīts:
 
-#### 5. [Papildu funkcionalitāte]
-[Apraksti vēl vienu produkta funkciju.]
+* faila nosaukums;
+* izmērs;
+* augšupielādes laiks;
+* derīguma termiņš;
+* koplietošanas saite.
 
-**Ievades dati:** [Ievades dati]  
-**Apstrāde:** [Apstrādes process]  
-**Rezultāts:** [Rezultāts]
+### 8. Failu koplietošana
 
-#### 6. [Papildu funkcionalitāte]
-[Apraksti vēl vienu produkta funkciju.]
+Pēc faila augšupielādes lietotājs saņem unikālu saiti.
 
-**Ievades dati:** [Ievades dati]  
-**Apstrāde:** [Apstrādes process]  
-**Rezultāts:** [Rezultāts]
+Saiti var nosūtīt citam lokālā tīkla lietotājam.
 
-### Sistēmas galvenā funkcionalitāte
-[Šeit pilnībā apraksti produkta galveno funkcionalitāti un galvenās darbības, ko lietotājs var veikt.]
+Saņēmējam nav nepieciešams īpašnieka cookie vai konts.
 
-### Sistēmas papildfunkcionalitāte
-[Šeit pilnībā apraksti produkta papildfunkcijas.]
+### 9. Failu automātiska dzēšana
+
+Serveris periodiski pārbauda failu derīguma termiņus.
+
+Ja termiņš ir beidzies, fails tiek dzēsts no servera un tā ieraksts no SQLite datubāzes.
+
+### 10. Servera atrašana lokālajā tīklā
+
+Go serveris izmanto mDNS, lai LanShare būtu pieejams ar adresi `lanshare.local`.
+
+Lietotājam nav nepieciešams zināt servera IP adresi.
+
+### 11. Administrācijas panelis
+
+Administrators var piekļūt `lanshare.local/admin`.
+
+Administrācijas panelī administrators var:
+
+* apskatīt izmantoto un brīvo vietu;
+* apskatīt failu skaitu;
+* apskatīt failu sarakstu;
+* dzēst jebkuru failu;
+* dzēst visus failus;
+* mainīt servera konfigurāciju;
+* iestatīt maksimālo pieejamo vietu failiem;
+* iestatīt maksimālo faila izmēru;
+* apturēt vai atļaut jaunu failu augšupielādi;
+* pārvaldīt failu derīguma termiņa iestatījumus;
+* apskatīt servera darbības informāciju.
+
+Administrācijas panelis ir pieejams tikai autentificētam administratoram.
+
+### 12. Servera konfigurācija
+
+Servera konfigurāciju var pārvaldīt administrācijas panelī.
+
+Konfigurācijā var tikt saglabāti:
+
+* failu glabāšanas mapes atrašanās vieta;
+* failiem pieejamās vietas limits;
+* maksimālais faila izmērs;
+* vai ir atļauta failu augšupielāde;
+* noklusētais faila derīguma termiņš;
+* citi servera darbības iestatījumi.
+
+Konfigurācijas dati tiek glabāti SQLite datubāzē.
+
+Mainot konfigurāciju, jaunie iestatījumi tiek izmantoti bez nepieciešamības restartēt serveri.
 
 ---
 
-## Sistēmas nefunkcionālās prasības
+## Sistēmas galvenā funkcionalitāte
 
-### Darbības vides prasības
-[Apraksti nepieciešamo programmatūru un aparatūru, piemēram, operētājsistēmu, tīkla savienojumu, servera prasības, klienta ierīces u.c.]
+LanShare galvenā funkcionalitāte ir failu pārsūtīšana lokālajā tīklā.
 
-### Drošība, datu aizsardzība un uzticamība
-[Apraksti, kā tiks aizsargāti dati, kā tiks ierobežota piekļuve un kā tiks nodrošināta sistēmas uzticamība.]
+Lietotājs atver `lanshare.local`, augšupielādē failu un saņem unikālu koplietošanas saiti. Savus failus lietotājs var apskatīt sadaļā `Mani faili`, lejupielādēt un dzēst.
 
-### Saskarne un dizains
-[Apraksti lietotāja saskarni, tās valodu, dizaina prasības, lietojamību un responsivitāti.]
+Cookie identificē lietotāju un tā piederošos failus.
 
-### Veiktspēja
-[Apraksti prasības sistēmas ātrumam, piemēram, failu augšupielādes/lejupielādes ātrumam, atbildes laikam un vienlaicīgo lietotāju skaitam.]
+## Sistēmas papildfunkcionalitāte
 
-### Galvenās nefunkcionālās prasības
-[Šeit pilnībā apraksti produkta galvenās nefunkcionālās prasības.]
+Papildfunkcionalitāte:
 
-### Papildu nefunkcionālās prasības
-[Šeit pilnībā apraksti produkta papildu nefunkcionālās prasības.]
+* mDNS servera atrašanai;
+* failu derīguma termiņi;
+* failu koplietošana ar unikālām saitēm;
+* teksta un URL pievienošana failiem;
+* administratora panelis;
+* servera konfigurācija;
+* izmantotās vietas kontrole;
+* failu augšupielādes apturēšana;
+* administratora iespēja dzēst jebkuru failu;
+* automātiska failu dzēšana pēc derīguma termiņa.
 
 ---
+
+# Sistēmas nefunkcionālās prasības
+
+## Darbības vides prasības
+
+**Serverim nepieciešams:**
+
+* dators ar Windows vai Linux;
+* lokālais tīkls;
+* LanShare servera izpildāmais fails;
+* pietiekama vieta failu glabāšanai.
+
+SQLite darbībai nav nepieciešams atsevišķs datubāzes serveris.
+
+**Klientam nepieciešams:**
+
+* dators, telefons vai cita ierīce;
+* moderna tīmekļa pārlūkprogramma;
+* savienojums ar to pašu lokālo tīklu.
+
+## Drošība, datu aizsardzība un uzticamība
+
+Faili tiek pārsūtīti lokālajā tīklā un netiek nosūtīti uz ārējiem failu glabāšanas pakalpojumiem.
+
+Failiem var piekļūt ierīces, kuras var sasniegt LanShare serveri lokālajā tīklā.
+
+Faila īpašnieka noteikšanai tiek izmantots cookie. IP un MAC adrese netiek izmantota kā lietotāja identifikators.
+
+Administrācijas panelis ir aizsargāts ar administratora paroli.
+
+Administratoram ir tiesības pārvaldīt visus failus un servera konfigurāciju.
+
+Sistēmai jānovērš situācija, kurā viena lietotāja cookie ļauj dzēst cita lietotāja failus.
+
+## Saskarne un dizains
+
+LanShare ir tīmekļa lietotne latviešu valodā.
+
+Saskarnei jābūt vienkāršai un responsīvai, lai to varētu izmantot datorā, telefonā un planšetē.
+
+Galvenās sadaļas:
+
+* `Mani faili`;
+* faila augšupielāde;
+* koplietošana;
+* administrācijas panelis.
+
+Administrācijas sadaļa ir pieejama tikai administratoram.
+
+## Veiktspēja
+
+Failu pārsūtīšanas ātrumu nosaka lokālā tīkla un servera aparatūras veiktspēja.
+
+Sistēma nedrīkst būtiski ierobežot pieejamo tīkla ātrumu.
+
+Parastiem API pieprasījumiem atbildes laiks nedrīkst pārsniegt **2 sekundes**. Lielu failu augšupielādei un lejupielādei šis ierobežojums neattiecas.
+
+Sistēmai jāapstrādā vairāki vienlaicīgi pieprasījumi.
+
+## Galvenās nefunkcionālās prasības
+
+* Darbība lokālajā tīklā.
+* Windows un Linux atbalsts serverim.
+* Tīmekļa pārlūkprogrammas izmantošana klientā.
+* Responsīva saskarne.
+* Administratora autentifikācija.
+* Failu glabāšanas vietas kontrole.
+* Failu izmēra un augšupielādes ierobežojumu konfigurēšana.
+
+
+## Papildu nefunkcionālās prasības
+
+* Lietotājam nav nepieciešams instalēt atsevišķu programmu.
+* Serverim jābūt vienkārši konfigurējamam.
+* Administrācijas panelim jābūt pieejamam - `lanshare.local/admin`.
+* Serverim jāspēj darboties bez interneta savienojuma.
+* Sistēmai jānodrošina kļūdu apstrāde un datu konsekvence.
 
 ## Uzdevuma risināšanas līdzekļu apraksts un izvēles pamatojums
 
 ### Iespējamo risinājuma līdzekļu un valodu apraksts
-[Apraksti un sniedz raksturojumu trīs piemērotākajām programmēšanas valodu alternatīvām.]  
-[Norādi un pamato, kāpēc katra no šīm trim valodām ir piemērota uzdevuma risināšanai.]  
-[Apraksti un sniedz raksturojumu trīs piemērotākajām tehnoloģiju vai rīku (ietvari, izstrādes vides, redaktori, dziņi u.tml.) alternatīvām.]  
-[Norādi un pamato, kāpēc katra no šīm tehnoloģijām/rīkiem ir piemērota uzdevuma risināšanai.]  
+
+[Norādi trīs piemērotākās programmēšanas valodu alternatīvas un īsi raksturo katru no tām.]
+Programmēšanas valodu alternatīvas ir:
+1. PHP:
+   * Plašs bibliotēku un ietvaru klāsts.
+2. Java:
+   * Labi piemērota vairāku vienlaicīgu pieprasījumu apstrādei.
+3. Javascript:
+   * Var izmantot gan klienta, gan servera puses izstrādei.
+   * Samazināta mentālā slodze, jo nav jāpārslēdzas starp redaktoriem, bet visu raksti vienā vietā un vienā valodā.
+
+Tehnoloģiju alternatīvas ir:
+1. Laravel ietvars:
+    * Nodrošina nepieciešamās funkcijas darbam ar datubāzi, autentifikāciju un tīmekļa pieprasījumiem. 
+    * Ļauj ātrāk izstrādāt tīmekļa lietotnes.
+2. Flutter:
+   * Var izmantot mobilo un WEB lietotņu izstrādei.
+   * Nākotnē LanShare var paplašināt ar mobilo lietotni.
+3. MySQL:
+   * Piemērots lielākām sistēmām ar daudziem lietotājiem.
+   * Nodrošina labu veiktspēju un vienlaicīgu pieprasījumu apstrādi.
 
 ### Izvēlēto risinājuma līdzekļu un valodu apraksts
-[Norādi pamatojumu izvēlētajai valodai vai valodām, izskaidrojot, kāpēc tieši tā ir izvēlēta uzdevuma risināšanai.]  
-[Apraksti izvēlētās valodas piedāvātās iespējas un to, ar ko šī valoda atšķiras no citām līdzīgām valodām.]  
-[Norādi pamatojumu izvēlētajai tehnoloģijai vai tehnoloģijām, izskaidrojot to izvēli.]  
-[Apraksti izvēlētās tehnoloģijas piedāvātās iespējas, funkcionalitāti un atšķirības no citām līdzīgām tehnoloģijām.]  
+
+#### Izvēlētās programmēšanas valodas
+
+1. **Go programmēšanas valoda**
+
+   * Pluss: Ātra, kompilēta valoda ar labu veiktspēju.
+   * Pluss: Ērti piemērota serveru un tīkla lietotņu izstrādei.
+   * Pluss: Atbalsta vienlaicīgu uzdevumu izpildi ar gorutīnām. Gorutīnas sākotnēji izmanto tikai dažus KB atmiņas, tāpēc iespējams efektīvi apstrādāt lielu skaitu vienlaicīgu uzdevumu.
+   * Mīnuss: Salīdzinot ar dažām citām valodām, ir mazāk iebūvētas funkcionalitātes.
+   * Izvēlēta, jo LanShare serverim nepieciešama laba veiktspēja, tīkla pieprasījumu apstrāde un failu pārsūtīšana.
+   * Atšķirībā no Java, Go programmas var kompilēt vienā izpildāmā failā, tāpēc servera uzstādīšana ir vienkāršāka.
+   * Atšķirībā no JavaScript, Go ir kompilēta valoda un tāpēc ir daudz ātrāka.
+
+2. **JavaScript, HTML un CSS**
+
+   * Pluss: Standarta tīmekļa tehnoloģijas, kuras atbalsta praktiski visas mūsdienu pārlūkprogrammas.
+   * Pluss: Ļauj izveidot interaktīvu un responsīvu tīmekļa saskarni.
+   * Pluss: Nav nepieciešams instalēt atsevišķu programmu klienta ierīcē.
+   * Izvēlētas, jo LanShare ir tīmekļa lietotne, kurai jādarbojas datoros un mobilajās ierīcēs.
+   * Atšķirībā no Flutter un WebAssembly, lietotnes izstrāde ar šīm tehnoloģijām ir daudz ātrāka un vienkāršāka.
+   * HTML nodrošina lapas struktūru, CSS – vizuālo noformējumu, bet JavaScript – interaktivitāti un saziņu ar serveri.
+
+#### Izvēlēto tehnoloģiju pamatojums
+
+1. **React**
+
+   * Izvēlēts tīmekļa saskarnes izstrādei.
+   * Ļauj sadalīt saskarni atkārtoti izmantojamās komponentēs.
+   * Atvieglo dinamisku datu, piemēram, failu saraksta un augšupielādes statusa, attēlošanu.
+   * Salīdzinot ar vienkāršu JavaScript, React nodrošina ērtāku lielākas un interaktīvākas saskarnes izstrādi.
+
+2. **SQLite**
+
+   * Izvēlēta datu glabāšanai, piemēram, failu metadatiem un servera konfigurācijai.
+   * Nav nepieciešams atsevišķs datubāzes serveris.
+   * Vienkārši uzstādāma un piemērota nelielai lokālā tīkla sistēmai.
+   * Atšķirībā no MySQL nav nepieciešams atsevišķi darbināt datubāzes serveri, tāpēc LanShare uzstādīšana ir vienkāršāka.
+
+3. **mDNS**
+
+   * Izvēlēts servera automātiskai atrašanai lokālajā tīklā.
+   * Ļauj lietotājiem piekļūt serverim, izmantojot `lanshare.local`, nevis meklējot servera IP adresi.
+   * Atšķirībā no manuālas IP adreses ievadīšanas lietotājam nav jāzina servera IP adrese.
+
 
 ---
 
-## Sistēmas modelēšana un projektēšana
+# Sistēmas modelēšana un projektēšana
 
-### Sistēmas struktūras modelis
-[Iekļauj produkta (sistēmas/vienības) struktūras aprakstu.]  
-[Pievieno sistēmas shēmu, ER-diagrammu, klašu diagrammu vai tml.]  
-[Izveido un iekļauj datu vārdnīcu.]  
-[Pievieno diagrammu kopumu, kas pilnībā apraksta produkta vai tā vienības galvenās struktūras.]  
-[Pievieno diagrammu kopumu, kas pilnībā apraksta produkta vai tā vienības papildus specifiskās struktūras.]  
+## Sistēmas struktūras modelis
 
-### Funkcionālais un dinamiskais sistēmas modelis
-[Iekļauj lietojuma gadījumu diagrammas, datu plūsmu diagrammas, secību diagrammas, komunikāciju diagrammas vai scenārijus.]  
-[Iekļauj algoritmu shēmas, stāvokļu diagrammas, aktivitāšu diagrammas vai izvēlētās risināšanas metodes aprakstu.]  
-[Pārliecinies, ka iekļautās diagrammas precīzi atbilst iepriekš specifikācijā definētajām sistēmas funkcionālajām prasībām, un īsi to apraksti.]
+[Iekļauj produkta sistēmas struktūras aprakstu.]
+
+[Pievieno sistēmas shēmu, ER-diagrammu, klašu diagrammu vai līdzīgu diagrammu.]
+
+[Izveido un iekļauj datu vārdnīcu.]
+
+[Pievieno diagrammu kopumu, kas apraksta produkta galvenās struktūras.]
+
+[Pievieno diagrammas, kas apraksta produkta papildfunkciju struktūras.]
+
+## Funkcionālais un dinamiskais sistēmas modelis
+
+[Iekļauj lietojuma gadījumu diagrammas, datu plūsmu diagrammas, secību diagrammas, komunikāciju diagrammas vai scenārijus.]
+
+[Iekļauj algoritmu shēmas, stāvokļu diagrammas, aktivitāšu diagrammas vai izvēlētās risināšanas metodes aprakstu.]
+
+[Pārliecinies, ka diagrammas atbilst sistēmas funkcionālajām prasībām, un īsi apraksti katru diagrammu.]
