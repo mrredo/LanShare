@@ -1,6 +1,6 @@
 # LanShare
 
-## Ievads
+## Ievads JĀUZRAKSTA VAIRĀK UN VAIRĀK YAPPPP
 
 ### Aprakstītā situācija pirms produkta izveides
 
@@ -486,7 +486,41 @@ Tehnoloģiju alternatīvas ir:
 
 [Pievieno sistēmas shēmu, ER-diagrammu, klašu diagrammu vai līdzīgu diagrammu.]
 
-[Izveido un iekļauj datu vārdnīcu.]
+### `files`
+
+| Lauks | Datu tips | Ierobežojumi | Apraksts |
+|---|---|---|---|
+| `id` | TEXT | PRIMARY KEY, NOT NULL | Unikāls faila identifikators. |
+| `filename` | TEXT | NOT NULL | Faila nosaukums. |
+| `storage_path` | TEXT | NOT NULL, UNIQUE | Faila atrašanās vieta serverī. |
+| `size` | INTEGER | NOT NULL, ≥ 0 | Faila izmērs baitos. |
+| `owner_cookie` | TEXT | NOT NULL | Pārlūka sīkdatnes identifikators, kas nosaka faila īpašnieku. |
+| `text` | TEXT | NULL | Lietotāja pievienotais teksts. |
+| `url` | TEXT | NULL | Lietotāja pievienotā saite. |
+| `uploaded_at` | DATETIME | NOT NULL | Faila augšupielādes datums un laiks. |
+| `expires_at` | DATETIME | NULL | Datums un laiks, kad failam beidzas derīguma termiņš. |
+
+### `settings`
+
+| Lauks | Datu tips | Ierobežojumi | Apraksts |
+|---|---|---|---|
+| `id` | INTEGER | PRIMARY KEY | Iestatījumu ieraksta identifikators. |
+| `storage_path` | TEXT | NOT NULL, UNIQUE | Ceļš uz mapi, kurā tiek glabāti faili. |
+| `storage_limit` | INTEGER | NOT NULL, > 0 | Maksimālais glabātuves izmērs baitos. |
+| `max_file_size` | INTEGER | NOT NULL, > 0 | Maksimālais viena faila izmērs baitos. |
+| `uploads_enabled` | BOOLEAN | NOT NULL | Norāda, vai lietotājiem ir atļauts augšupielādēt failus. |
+| `default_expiry` | INTEGER | NULL, > 0 | Noklusējuma faila derīguma ilgums sekundēs. |
+| `admin_password_hash` | TEXT | NOT NULL | Administratora paroles jaucējkods. |
+
+### `admin_sessions`
+
+| Lauks | Datu tips | Ierobežojumi | Apraksts |
+|---|---|---|---|
+| `id` | TEXT | PRIMARY KEY, NOT NULL | Administratora sesijas unikāls identifikators. |
+| `created_at` | DATETIME | NOT NULL | Sesijas izveides datums un laiks. |
+| `expires_at` | DATETIME | NOT NULL | Datums un laiks, kad administratora sesija beidzas. |
+
+**Piezīme:** LanShare nav atsevišķas `users` tabulas, jo parastie lietotāji tiek identificēti ar pārlūka `owner_cookie`.
 
 [Pievieno diagrammu kopumu, kas apraksta produkta galvenās struktūras.]
 
