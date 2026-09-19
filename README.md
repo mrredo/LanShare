@@ -254,7 +254,7 @@ Saņēmējam nav nepieciešams īpašnieka cookie vai konts.
 
 ### 9. Failu automātiska dzēšana
 
-Serveris periodiski pārbauda failu derīguma termiņus.
+Serveris ik pa 5 minūtēm pārbauda failu derīguma termiņus.
 
 Ja termiņš ir beidzies, fails tiek dzēsts no servera un tā ieraksts no SQLite datubāzes.
 
@@ -482,9 +482,11 @@ Tehnoloģiju alternatīvas ir:
 
 ## Sistēmas struktūras modelis
 
-[Iekļauj produkta sistēmas struktūras aprakstu.]
+LanShare sistēmu veido Go serveris, React tīmekļa lietotne, SQLite datubāze, failu glabātuve un mDNS pakalpojums. Go serveris nodrošina galveno sistēmas darbību, apstrādā failu augšupielādi un lejupielādi, pārvalda failu dzēšanu un sazinās ar SQLite datubāzi. React tīmekļa lietotne nodrošina lietotāja saskarni, savukārt mDNS ļauj lokālajā tīklā piekļūt sistēmai, izmantojot adresi `lanshare.local`.
 
-[Pievieno sistēmas shēmu, ER-diagrammu, klašu diagrammu vai līdzīgu diagrammu.]
+### Datu bāzes struktūra
+
+LanShare datubāzē tiek glabāti dati par failiem, sistēmas iestatījumiem un administratora sesijām. Parastie lietotāji datubāzē netiek glabāti atsevišķā tabulā, bet tiek identificēti ar pārlūka `owner_cookie`.
 
 ### `files`
 
@@ -495,8 +497,6 @@ Tehnoloģiju alternatīvas ir:
 | `storage_path` | TEXT | NOT NULL, UNIQUE | Faila atrašanās vieta serverī. |
 | `size` | INTEGER | NOT NULL, ≥ 0 | Faila izmērs baitos. |
 | `owner_cookie` | TEXT | NOT NULL | Pārlūka sīkdatnes identifikators, kas nosaka faila īpašnieku. |
-| `text` | TEXT | NULL | Lietotāja pievienotais teksts. |
-| `url` | TEXT | NULL | Lietotāja pievienotā saite. |
 | `uploaded_at` | DATETIME | NOT NULL | Faila augšupielādes datums un laiks. |
 | `expires_at` | DATETIME | NULL | Datums un laiks, kad failam beidzas derīguma termiņš. |
 
@@ -510,7 +510,7 @@ Tehnoloģiju alternatīvas ir:
 | `max_file_size` | INTEGER | NOT NULL, > 0 | Maksimālais viena faila izmērs baitos. |
 | `uploads_enabled` | BOOLEAN | NOT NULL | Norāda, vai lietotājiem ir atļauts augšupielādēt failus. |
 | `default_expiry` | INTEGER | NULL, > 0 | Noklusējuma faila derīguma ilgums sekundēs. |
-| `admin_password_hash` | TEXT | NOT NULL | Administratora paroles jaucējkods. |
+| `admin_password_hash` | TEXT | NOT NULL | Administratora paroles hešs. |
 
 ### `admin_sessions`
 
@@ -522,9 +522,29 @@ Tehnoloģiju alternatīvas ir:
 
 **Piezīme:** LanShare nav atsevišķas `users` tabulas, jo parastie lietotāji tiek identificēti ar pārlūka `owner_cookie`.
 
-[Pievieno diagrammu kopumu, kas apraksta produkta galvenās struktūras.]
+### Produkta galveno struktūru diagrammas
 
-[Pievieno diagrammas, kas apraksta produkta papildfunkciju struktūras.]
+#### 1.1. Sistēmas struktūras diagramma
+
+![Produkta sistēmas struktūra](./assets/product-diagram.png)
+
+#### 1.2. Tīkla un mDNS struktūras diagramma
+
+![Tīkla un mDNS struktūra](./assets/mdns-diagram.png)
+
+#### Datu bāzes struktūras diagramma
+
+![ER diagramma](./assets/er-diagram.png)
+
+## Produkta papildfunkciju struktūras diagrammas
+
+#### 2.1. Failu augšupielādes un lejupielādes diagramma
+
+![Failu augšupielāde un lejupielāde](./assets/download-upload-diagram.png)
+
+#### 2.2. Automātiskas failu dzēšanas diagramma
+
+![Automātiska failu dzēšana](./assets/automatic-file-deletion-diagram.png)
 
 ## Funkcionālais un dinamiskais sistēmas modelis
 
