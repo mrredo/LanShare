@@ -1,3 +1,17 @@
+# TODO:
+
+* Konkrētība vai ir ātri, vai ir precīzs skaitlis. Precizitāte
+  * ātri
+    ātrāks
+    vienkārši
+    daudz
+    pietiekami
+    mūsdienīgs
+    būtiski
+    liels
+* Ievads garāks.
+* Diagrammu apraksts
+
 # LanShare
 
 ## Ievads JĀUZRAKSTA VAIRĀK UN VAIRĀK YAPPPP
@@ -56,12 +70,13 @@ LanShare mērķauditorija ir skolēni, skolotāji, darbinieki un citi lietotāji
 
 Lai produkts darbotos, nepieciešams:
 
-* lokālais tīkls ar vismaz 100 Mbit/s savienojuma ātrumu;
+* lokālais tīkls
 * ierīce ar Windows vai Linux operētājsistēmu;
 * vismaz 2 GB RAM;
 * vismaz 1 GB brīvas vietas programmas un datubāzes darbībai;
-* pietiekama papildu vieta failu glabāšanai;
-* mūsdienīgs interneta pārlūks, piemēram, Google Chrome, Mozilla Firefox, Microsoft Edge vai Safari.
+* brīva diska vieta failu glabāšanai atbilstoši administratora konfigurētajam glabāšanas limitam;
+* tīmekļa pārlūks ar JavaScript, HTML5 un CSS atbalstu, piemēram, Google Chrome, Mozilla Firefox, Microsoft Edge vai Safari;
+
 
 SQLite datubāzei nav nepieciešams atsevišķs datubāzes serveris. Failu glabāšanai nepieciešamā diska vieta ir atkarīga no administratora konfigurētā glabāšanas limita un augšupielādēto failu apjoma.
 
@@ -134,7 +149,7 @@ Administrators atver `lanshare.local/admin` un ievada administratora paroli.
 
 **Ievades dati:**
 
-* **Administratora parole**
+* **Administratora parole**            
 
 **Apstrāde:**
 
@@ -151,7 +166,7 @@ Pēc veiksmīgas autentifikācijas serveris izveido administratora sesiju un sag
 
 ### 4. Failu augšupielāde
 
-Lietotājs izvēlas failu un pēc izvēles pievieno tekstu, URL un derīguma termiņu.
+Lietotājs pēc izvēles pievieno failu, tekstu, URL un derīguma termiņu. Vismaz viens no datu veidiem — fails, teksts vai URL — ir obligāts.
 
 **Ievades dati:**
 
@@ -163,31 +178,23 @@ Lietotājs izvēlas failu un pēc izvēles pievieno tekstu, URL un derīguma ter
 
 **Apstrāde:**
 
-Serveris pārbauda, vai failu augšupielāde ir atļauta, vai nav pārsniegts maksimālais faila izmērs un vai ir pietiekami daudz brīvas vietas.
+Ja ir pievienots fails, serveris pārbauda, vai failu augšupielāde ir atļauta, vai nav pārsniegts maksimālais faila izmērs un vai ir pietiekami daudz brīvas vietas.
 
 Ja failu glabāšanas mape neeksistē, serveris pārbauda konfigurācijā norādīto mapes atrašanās vietu. Ja atrašanās vieta nav norādīta, serveris izveido noklusējuma `/uploads` direktoriju.
-Fails tiek saglabāts serverī, bet tā metadati tiek saglabāti SQLite datubāzē.
 
-Failam tiek piešķirts unikāls identifikators un tā īpašnieka cookie identifikators.
+Ja ir pievienots fails, tas tiek saglabāts serverī, bet tā metadati tiek saglabāti SQLite datubāzē.
+
+Datu ierakstam tiek piešķirts unikāls identifikators un tā īpašnieka cookie identifikators.
 
 **Rezultāts:**
 
-Lietotājam tiek atgriezta faila koplietošanas saite.
+Lietotājam tiek atgriezta datu koplietošanas saite.
 
 ```json
 {
   "success": true,
-  "message": "Fails tika veiksmīgi augšupielādēts",
-  "download_url": "http://lanshare.local/uploads/H8e1Ja2"
-}
-```
-
-Ja augšupielāde neizdodas:
-
-```json
-{
-  "success": false,
-  "message": "Kaut kas nogāja greizi."
+  "message": "Dati tika veiksmīgi augšupielādēti",
+  "share_url": "http://lanshare.local/share/H8e1Ja2"
 }
 ```
 
@@ -254,10 +261,9 @@ Saņēmējam nav nepieciešams īpašnieka cookie vai konts.
 
 ### 9. Failu automātiska dzēšana
 
-Serveris ik pa 5 minūtēm pārbauda failu derīguma termiņus.
+Serveris ik pēc 5 minūtēm pārbauda SQLite datubāzē, kuriem failiem ir beidzies derīguma termiņš.
 
-Ja termiņš ir beidzies, fails tiek dzēsts no servera un tā ieraksts no SQLite datubāzes.
-
+Ja failam ir beidzies derīguma termiņš, serveris dzēš failu no failu glabātuves un pēc tam dzēš tā ierakstu no SQLite datubāzes.
 ### 10. Servera atrašana lokālajā tīklā
 
 Go serveris izmanto mDNS, lai LanShare būtu pieejams ar adresi `lanshare.local`.
@@ -365,7 +371,7 @@ Sistēmai jānovērš situācija, kurā viena lietotāja cookie ļauj dzēst cit
 
 LanShare ir tīmekļa lietotne latviešu valodā.
 
-Saskarnei jābūt vienkāršai un responsīvai, lai to varētu izmantot datorā, telefonā un planšetē.
+Saskarnei jābūt responsīvai un izmantojamai datoros, telefonos un planšetēs.
 
 Galvenās sadaļas:
 
@@ -378,13 +384,11 @@ Administrācijas sadaļa ir pieejama tikai administratoram.
 
 ## Veiktspēja
 
-Failu pārsūtīšanas ātrumu nosaka lokālā tīkla un servera aparatūras veiktspēja.
-
-Sistēma nedrīkst būtiski ierobežot pieejamo tīkla ātrumu.
+Failu pārsūtīšanas ātrumu nosaka lokālā tīkla un servera aparatūras veiktspēja. Sistēma nenosaka atsevišķu fiksētu maksimālo pārsūtīšanas ātrumu.
 
 Parastiem API pieprasījumiem atbildes laiks nedrīkst pārsniegt **2 sekundes**. Lielu failu augšupielādei un lejupielādei šis ierobežojums neattiecas.
 
-Sistēmai jāapstrādā vairāki vienlaicīgi pieprasījumi.
+Sistēmai jāspēj vienlaicīgi apstrādāt vismaz 10 HTTP pieprasījumus.
 
 ## Galvenās nefunkcionālās prasības
 
@@ -400,7 +404,7 @@ Sistēmai jāapstrādā vairāki vienlaicīgi pieprasījumi.
 ## Papildu nefunkcionālās prasības
 
 * Lietotājam nav nepieciešams instalēt atsevišķu programmu.
-* Serverim jābūt vienkārši konfigurējamam.
+* Servera konfigurācija jāveic administrācijas panelī, neveicot koda izmaiņas vai nerestartējot programmu.
 * Administrācijas panelim jābūt pieejamam - `lanshare.local/admin`.
 * Serverim jāspēj darboties bez interneta savienojuma.
 * Sistēmai jānodrošina kļūdu apstrāde un datu konsekvence.
@@ -438,11 +442,11 @@ Tehnoloģiju alternatīvas ir:
 
    * Pluss: Ātra, kompilēta valoda ar labu veiktspēju.
    * Pluss: Ērti piemērota serveru un tīkla lietotņu izstrādei.
-   * Pluss: Atbalsta vienlaicīgu uzdevumu izpildi ar gorutīnām. Gorutīnas sākotnēji izmanto tikai dažus KB atmiņas, tāpēc iespējams efektīvi apstrādāt lielu skaitu vienlaicīgu uzdevumu.
+   * Pluss: Atbalsta vienlaicīgu procesu izpildi ar gorutīnām. Gorutīnas sākotnēji izmanto tikai dažus KB atmiņas, tāpēc iespējams efektīvi apstrādāt lielu skaitu vienlaicīgu procesu.
    * Mīnuss: Salīdzinot ar dažām citām valodām, ir mazāk iebūvētas funkcionalitātes.
    * Izvēlēta, jo LanShare serverim nepieciešama laba veiktspēja, tīkla pieprasījumu apstrāde un failu pārsūtīšana.
    * Atšķirībā no Java, Go programmas var kompilēt vienā izpildāmā failā, tāpēc servera uzstādīšana ir vienkāršāka.
-   * Atšķirībā no JavaScript, Go ir kompilēta valoda un tāpēc ir daudz ātrāka.
+   * Atšķirībā no JavaScript, Go ir kompilēta valoda, tāpēc programma tiek izpildīta ātrāk.
 
 2. **JavaScript, HTML un CSS**
 
@@ -450,7 +454,7 @@ Tehnoloģiju alternatīvas ir:
    * Pluss: Ļauj izveidot interaktīvu un responsīvu tīmekļa saskarni.
    * Pluss: Nav nepieciešams instalēt atsevišķu programmu klienta ierīcē.
    * Izvēlētas, jo LanShare ir tīmekļa lietotne, kurai jādarbojas datoros un mobilajās ierīcēs.
-   * Atšķirībā no Flutter un WebAssembly, lietotnes izstrāde ar šīm tehnoloģijām ir daudz ātrāka un vienkāršāka.
+   * Atšķirībā no Flutter un WebAssembly, lietotnes izstrāde ar šīm tehnoloģijām ir daudz ātrāka un vienkāršāka, jo tās ir paredzētas tikai WEB izstrādei.
    * HTML nodrošina lapas struktūru, CSS – vizuālo noformējumu, bet JavaScript – interaktivitāti un saziņu ar serveri.
 
 #### Izvēlēto tehnoloģiju pamatojums
@@ -492,13 +496,13 @@ LanShare datubāzē tiek glabāti dati par failiem, sistēmas iestatījumiem un 
 
 | Lauks | Datu tips | Ierobežojumi | Apraksts |
 |---|---|---|---|
-| `id` | TEXT | PRIMARY KEY, NOT NULL | Unikāls faila identifikators. |
-| `filename` | TEXT | NOT NULL | Faila nosaukums. |
-| `storage_path` | TEXT | NOT NULL, UNIQUE | Faila atrašanās vieta serverī. |
-| `size` | INTEGER | NOT NULL, ≥ 0 | Faila izmērs baitos. |
-| `owner_cookie` | TEXT | NOT NULL | Pārlūka sīkdatnes identifikators, kas nosaka faila īpašnieku. |
-| `uploaded_at` | DATETIME | NOT NULL | Faila augšupielādes datums un laiks. |
-| `expires_at` | DATETIME | NULL | Datums un laiks, kad failam beidzas derīguma termiņš. |
+| `id` | TEXT | PRIMARY KEY, NOT NULL | Unikāls ieraksta identifikators. |
+| `filename` | TEXT | NULL | Faila nosaukums, ja ierakstam ir pievienots fails. |
+| `storage_path` | TEXT | NULL, UNIQUE | Faila atrašanās vieta serverī, ja ierakstam ir pievienots fails. |
+| `size` | INTEGER | NULL, ≥ 0 | Faila izmērs baitos, ja ierakstam ir pievienots fails. |
+| `owner_cookie` | TEXT | NOT NULL | Pārlūka sīkdatnes identifikators, kas nosaka ieraksta īpašnieku. |
+| `uploaded_at` | DATETIME | NOT NULL | Ieraksta izveides datums un laiks. |
+| `expires_at` | DATETIME | NULL | Datums un laiks, kad ierakstam beidzas derīguma termiņš. |
 
 ### `settings`
 
@@ -548,8 +552,20 @@ LanShare datubāzē tiek glabāti dati par failiem, sistēmas iestatījumiem un 
 
 ## Funkcionālais un dinamiskais sistēmas modelis
 
-[Iekļauj lietojuma gadījumu diagrammas, datu plūsmu diagrammas, secību diagrammas, komunikāciju diagrammas vai scenārijus.]
+### 3.1. Failu augšupielādes un lejupielādes datu plūsmas diagramma
 
-[Iekļauj algoritmu shēmas, stāvokļu diagrammas, aktivitāšu diagrammas vai izvēlētās risināšanas metodes aprakstu.]
+![Failu augšupielādes un lejupielādes DFD](./assets/dfd-download-upload.png)
 
-[Pārliecinies, ka diagrammas atbilst sistēmas funkcionālajām prasībām, un īsi apraksti katru diagrammu.]
+[Īss diagrammas apraksts.]
+
+### 3.2. Servera konfigurācijas datu plūsmas diagramma
+
+![Servera konfigurācijas DFD](./assets/dfd-server-configuration.png)
+
+[Īss diagrammas apraksts.]
+
+### 3.3. Administratora autentifikācijas datu plūsmas diagramma
+
+![Administratora autentifikācijas DFD](./assets/dfd-admin-login.png)
+
+[Īss diagrammas apraksts.]
