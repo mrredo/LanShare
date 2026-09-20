@@ -11,27 +11,66 @@
     liels
 * Ievads garāks.
 * Diagrammu apraksts
+* 
 
 # LanShare
 
-## Ievads JĀUZRAKSTA VAIRĀK UN VAIRĀK YAPPPP
+## Ievads
 
 ### Aprakstītā situācija pirms produkta izveides
 
-Lai pārsūtītu failus starp telefonu, datoru un citām ierīcēm, parasti tiek izmantots vads, mākoņpakalpojums vai ziņapmaiņas lietotne. Vada izmantošana ne vienmēr ir ērta, savukārt mākoņpakalpojumiem un ziņapmaiņas lietotnēm nepieciešams interneta savienojums un faili tiek pārsūtīti caur ārējiem serveriem.
+[PLACEHOLDER — aptuveni 1–2 rindkopas]
 
-Tas nav ērti, kad ir jāpārsūta lieli faili, kad interneta savienojums nav pieejams vai ir ļoti lēns.
+Aprakstīt, kā cilvēki pašlaik pārsūta failus starp telefonu, datoru un citām ierīcēm:
+- vads;
+- mākoņpakalpojumi;
+- ziņapmaiņas lietotnes;
+- USB zibatmiņa vai citi datu nesēji.
+
+[PLACEHOLDER — 1 rindkopa]
+
+Aprakstīt šo risinājumu trūkumus:
+- nepieciešams vads vai papildu ierīce;
+- mākoņpakalpojumiem nepieciešams internets;
+- faili tiek glabāti ārējos serveros;
+- liela faila pārsūtīšana var būt neērta vai lēna;
+- dažos gadījumos nepieciešams instalēt papildu programmas.
+
+[PLACEHOLDER — 1 rindkopa]
+
+Paskaidrot, kāda problēma rodas, ja ierīces atrodas vienā lokālajā tīklā, bet nav nepieciešams izmantot internetu vai ārēju failu glabātuvi.
+
 
 ### Pamatota produkta nepieciešamība
 
-Failu pārsūtīšana starp vairākām ierīcēm ir bieža darbība. LanShare nodrošina vienkāršāku risinājumu, ļaujot pārsūtīt failus tieši lokālajā tīklā bez ārējiem failu glabāšanas pakalpojumiem.
+[PLACEHOLDER — 1–2 rindkopas]
+
+Paskaidrot, kāpēc nepieciešams vienkāršs risinājums failu pārsūtīšanai starp ierīcēm vienā lokālajā tīklā.
+
+[PLACEHOLDER — 1 rindkopa]
+
+Ievadīt LanShare kā risinājumu un īsi aprakstīt tā galveno darbības principu:
+lietotājs atver LanShare pārlūkprogrammā → augšupielādē failu → saņem koplietošanas saiti → failu var lejupielādēt cita ierīce.
+
 
 ### Pamatota produkta aktualitāte
 
-Cilvēki ikdienā izmanto vairākas elektroniskās ierīces, tāpēc nepieciešamība pārsūtīt informāciju starp tām ir aktuāla.
+[PLACEHOLDER — 1–2 rindkopas]
 
-LanShare ļauj failus pārsūtīt lokālajā tīklā, neizmantojot vadus vai ārējus failu pārsūtīšanas pakalpojumus.
+Aprakstīt, kāpēc problēma ir aktuāla mūsdienās, ņemot vērā to, ka cilvēki izmanto vairākas ierīces:
+- datorus;
+- telefonus;
+- planšetes;
+- citas tīkla ierīces.
 
+[PLACEHOLDER — 1 rindkopa]
+
+Paskaidrot, ka nepieciešamība ātri pārsūtīt failus starp ierīcēm nav saistīta tikai ar vienu konkrētu lietotāju grupu. To var izmantot skolēni, skolotāji, darbinieki un citi lietotāji.
+
+[PLACEHOLDER — noslēdzošā rindkopa]
+
+Īsi apkopot ievadu:
+LanShare nodrošina failu pārsūtīšanu lokālajā tīklā, neizmantojot vadus, internetu vai ārēju failu glabāšanas pakalpojumu, un tādējādi piedāvā vienkāršu risinājumu failu pārsūtīšanai starp ierīcēm.
 ## Uzdevuma formulējums
 
 ### Produkta nosaukums un veids
@@ -149,19 +188,21 @@ Administrators atver `lanshare.local/admin` un ievada administratora paroli.
 
 **Ievades dati:**
 
-* **Administratora parole**            
+* **Administratora parole**
 
 **Apstrāde:**
 
 Serveris pārbauda ievadīto paroli.
 
-Ja parole ir pareiza, tiek izveidota administratora sesija.
+Ja parole ir pareiza, tiek izveidota administratora sesija uz **1 dienu**.
 
 Ja parole nav pareiza, piekļuve administrācijas sadaļai tiek atteikta.
 
+Pēc 1 dienas administratora sesija zaudē derīgumu un administratoram ir jāautentificējas atkārtoti.
+
 **Rezultāts:**
 
-Pēc veiksmīgas autentifikācijas serveris izveido administratora sesiju un saglabā tās identifikatoru atsevišķā administratora cookie. Pēc tam administrators var izmantot administrācijas funkcijas.
+Pēc veiksmīgas autentifikācijas serveris izveido administratora sesiju uz 1 dienu un saglabā tās identifikatoru atsevišķā administratora cookie. Pēc tam administrators var izmantot administrācijas funkcijas, līdz sesijas derīguma termiņš beidzas.
 
 
 ### 4. Failu augšupielāde
@@ -496,14 +537,15 @@ LanShare datubāzē tiek glabāti dati par failiem, sistēmas iestatījumiem un 
 
 | Lauks | Datu tips | Ierobežojumi | Apraksts |
 |---|---|---|---|
-| `id` | TEXT | PRIMARY KEY, NOT NULL | Unikāls ieraksta identifikators. |
+| `id` | TEXT | PRIMARY KEY, NOT NULL | Unikāls datu ieraksta identifikators. |
 | `filename` | TEXT | NULL | Faila nosaukums, ja ierakstam ir pievienots fails. |
 | `storage_path` | TEXT | NULL, UNIQUE | Faila atrašanās vieta serverī, ja ierakstam ir pievienots fails. |
 | `size` | INTEGER | NULL, ≥ 0 | Faila izmērs baitos, ja ierakstam ir pievienots fails. |
-| `owner_cookie` | TEXT | NOT NULL | Pārlūka sīkdatnes identifikators, kas nosaka ieraksta īpašnieku. |
-| `uploaded_at` | DATETIME | NOT NULL | Ieraksta izveides datums un laiks. |
-| `expires_at` | DATETIME | NULL | Datums un laiks, kad ierakstam beidzas derīguma termiņš. |
-
+| `owner_cookie` | TEXT | NOT NULL | Pārlūka sīkdatnes identifikators, kas nosaka datu ieraksta īpašnieku. |
+| `text` | TEXT | NULL | Lietotāja pievienotais teksts. |
+| `url` | TEXT | NULL | Lietotāja pievienotā saite. |
+| `uploaded_at` | DATETIME | NOT NULL | Datu ieraksta izveides datums un laiks. |
+| `expires_at` | DATETIME | NULL | Datums un laiks, kad datu ierakstam beidzas derīguma termiņš. |
 ### `settings`
 
 | Lauks | Datu tips | Ierobežojumi | Apraksts |
