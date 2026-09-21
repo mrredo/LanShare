@@ -376,7 +376,7 @@ PHP ir programmēšanas valoda, kurai ir plašs bibliotēku un ietvaru klāsts. 
 
 **2. Java + Spring Boot + MySQL**
 
-Java darbojas uz daudzām operētājsistēmām. Tā ir statiski tipizēta valoda, kas ļauj pamanīt kļūdas izstrādes laikā. Spring Boot ir ietvars, kas izveido Web serveri un nodrošina saziņu ar datubāzi. Tas ir piemērots REST API izveidei, un ir pieejamas anotācijas, kas samazina koda atkārtošanos un boilerplate kodu.
+Java darbojas uz daudzām operētājsistēmām. Tā ir statiski rakstīta valoda, kas ļauj pamanīt noteiktas kļūdas izstrādes laikā. Spring Boot ir ietvars, kas izveido Web serveri un nodrošina saziņu ar datubāzi. Tas ir piemērots REST API izveidei, un ir pieejamas anotācijas, kas samazina koda atkārtošanos un boilerplate kodu.
 
 **3. JavaScript + Node.js + React + MySQL**
 
@@ -386,15 +386,15 @@ JavaScript var izmantot gan klienta, gan servera puses izstrādei. Node.js ļauj
 
 ### Izvēlēto risinājuma līdzekļu un valodu apraksts
 
-#### Izvēlētās programmēšanas valodas
+#### Izvēlētā programmēšanas valoda
 
-1. **Go programmēšanas valoda**
+**Go programmēšanas valoda**
 
 Go programmēšanas valoda ir kompilēta valoda ar ļoti labu veiktspēju. Tā ir piemērota gan vienkāršiem, gan sarežģītiem serveriem. Gorutīnas ļauj efektīvi apstrādāt vairākus pieprasījumus vienlaicīgi, patērējot maz atmiņas. LanShare lietotnei ir nepieciešams būt ātrai un patērēt maz resursu, lai tā varētu darboties, būtiski nepalēninot datora veiktspēju.
 
 Go ir labāks par alternatīvām, jo tā programma tiek kompilēta vienā izpildāmā failā, kā arī citām programmēšanas valodām nav gorutīnu vai līdzīga risinājuma.
 
-LanShare serverim ir nepieciešama vienkārša, ātra un maz resursu patērējoša programma, kuru var uzstādīt ikviens cilvēks.
+LanShare serverim ir nepieciešama vienkārša, ātra un maz resursu patērējoša programma, kuru var uzstādīt ikviens lietotājs.
 
 #### Izvēlēto tehnoloģiju pamatojums
 
