@@ -1,19 +1,3 @@
-# TODO:
-
-* Ievads garāks.
-
-* Konkrētība vai ir ātri, vai ir precīzs skaitlis. Precizitāte
-  * ātri
-    ātrāks
-    vienkārši
-    daudz
-    pietiekami
-    mūsdienīgs
-    būtiski
-    liels
-
-* Diagrammu apraksts
-
 # LanShare
 
 Cilvēkiem mūsdienās ir vairākas ierīces: telefoni, datori utt. Un rodas nepieciešamība pārsūtīt tekstu, linkus un failus starp šīm ierīcēm. Ir daudzi veidi, kā to darīt, izmantojot vadu, mākoņpakalpojumus, ziņapmaiņas lietotnes, kā WhatsApp, Discord utt., vai USB zibatmiņas.
@@ -22,7 +6,7 @@ Tomēr šīm metodēm ir savi trūkumi. Vada savienojamībai ir problēma, piem�
 
 Tā kā noskaidrojām ka failu pārsūtīšana caur internetu nav vienmēr ātra, izmantojot vadu, tā ne vienmēr ir ērta. Tad ir vajadzīgs kompromiss un labāks risinājums. Tāpēc, lai saglabātu failu pārsūtīšanas ātrumu, ērtumu un drošību, var izmantot lokālo tīklu, jo faili netiek sūtīti ārpus šī tīkla un var būt lielāks pārsūtīšanas ātrums, jo faili uzreiz ceļo no ierīces uz ierīci vienā tīklā, nevis izmantojot kādus citus pakalpojumus.
 
-Tāpēc ir nepieciešamība pēc viena konkrēta produkta. Tas ir **LanShare**. LanShare nodrošina failu, tekstu un saišu pārsūtīšanu starp ierīcēm un citiem cilvēkiem, kas ir pieslēgušies tam pašam tīklam. LanShare ir domāts kā palīdzības rīks skolēniem, skolotājiem, darbiniekiem, vadītājiem un citiem cilvēkiem, kuri regulāri izmanto vairākas ierīces un kuriem ir nepieciešams pārsūtīt informāciju uz citām ierīcēm.
+Nav viena konkrēta produkta, lietotnes, kas piedāvātu šādu risinājumu. Tāpēc ir nepieciešamība pēc viena konkrēta produkta. Tas ir **LanShare**. LanShare nodrošina failu, tekstu un saišu pārsūtīšanu starp ierīcēm un citiem cilvēkiem, kas ir pieslēgušies tam pašam tīklam. LanShare ir domāts kā palīdzības rīks skolēniem, skolotājiem, darbiniekiem, vadītājiem un citiem cilvēkiem, kuri regulāri izmanto vairākas ierīces un kuriem ir nepieciešams pārsūtīt informāciju uz citām ierīcēm. LanShare mērķis ir padarīt failu pārsūtīšanu vieglu, ērtu un ātru.
 
 
 
@@ -35,7 +19,7 @@ Lai produktu īstenotu ir nepieciešamas šādas tehnoloģijas:
 * CSS
 * SQLite
 
-LanShare sastāv no šādām sastāvdaļām:
+LanShare sastāv no šādām vienībām:
 
 * Go serveris ar iebūvētu mDNS servisu;
 * React tīmekļa lietotne;
@@ -329,13 +313,13 @@ SQLite darbībai nav nepieciešams atsevišķs datubāzes serveris.
 * moderna tīmekļa pārlūkprogramma;
 * savienojums ar to pašu lokālo tīklu.
 
-## Drošība, datu aizsardzība un uzticamība
+## Drošība, datu aizsardzība un autentifikācija
 
 Faili tiek pārsūtīti lokālajā tīklā un netiek nosūtīti uz ārējiem failu glabāšanas pakalpojumiem.
 
 Failiem var piekļūt ierīces, kuras var sasniegt LanShare serveri lokālajā tīklā.
 
-Faila īpašnieka noteikšanai tiek izmantots cookie. IP un MAC adrese netiek izmantota kā lietotāja identifikators.
+Faila īpašnieka noteikšanai tiek izmantots cookie.
 
 Administrācijas panelis ir aizsargāts ar administratora paroli.
 
@@ -389,25 +373,17 @@ Sistēmai jāspēj vienlaicīgi apstrādāt vismaz 10 HTTP pieprasījumus.
 
 ### Iespējamo risinājuma līdzekļu un valodu apraksts
 
-Programmēšanas valodu alternatīvas ir:
-1. PHP:
-   * Plašs bibliotēku un ietvaru klāsts.
-2. C#:
-   * Piemērota tīmekļa serveru un tīkla lietotņu izstrādei.
-3. Javascript:
-   * Var izmantot gan klienta, gan servera puses izstrādei.
-   * Samazināta mentālā slodze, jo nav jāpārslēdzas starp redaktoriem, bet visu raksti vienā vietā un vienā valodā.
+**1. PHP + Laravel + MySQL**
 
-Tehnoloģiju alternatīvas ir:
-1. Laravel ietvars:
-    * Nodrošina nepieciešamās funkcijas darbam ar datubāzi, autentifikāciju un tīmekļa pieprasījumiem. 
-    * Ļauj ātrāk izstrādāt tīmekļa lietotnes.
-2. Flutter:
-   * Var izmantot mobilo un WEB lietotņu izstrādei.
-   * Nākotnē LanShare var paplašināt ar mobilo lietotni.
-3. MySQL:
-   * Piemērots lielākām sistēmām ar daudziem lietotājiem.
-   * Nodrošina labu veiktspēju un vienlaicīgu pieprasījumu apstrādi.
+PHP ir programmēšanas valoda, kurai ir plašs bibliotēku un ietvaru klāsts. Laravel ir PHP ietvars, kas nodrošina nepieciešamās funkcijas darbam ar datubāzi, autentifikāciju un tīmekļa pieprasījumiem. MySQL ir piemērots lielākām sistēmām ar daudziem lietotājiem un nodrošina labu veiktspēju un vienlaicīgu pieprasījumu apstrādi.
+
+**2. Java + Spring Boot + MySQL**
+
+Java ir piemērota tīmekļa serveru un tīkla lietotņu izstrādei. Spring Boot ir tehnoloģija, ko var izmantot tīmekļa lietotņu un serveru izstrādei. MySQL var izmantot datu glabāšanai, un tas nodrošina labu veiktspēju, apstrādājot vairākus pieprasījumus vienlaicīgi.
+
+**3. JavaScript + Node.js + React + MySQL**
+
+JavaScript var izmantot gan klienta, gan servera puses izstrādei. Node.js ļauj izmantot JavaScript servera puses izstrādei, bet React var izmantot tīmekļa saskarnes izstrādei. Tas samazina mentālo slodzi, jo nav jāpārslēdzas starp programmēšanas valodām. MySQL var izmantot datu glabāšanai un tas ir piemērots sistēmām ar daudziem lietotājiem.
 
 ### Izvēlēto risinājuma līdzekļu un valodu apraksts
 
@@ -415,39 +391,27 @@ Tehnoloģiju alternatīvas ir:
 
 1. **Go programmēšanas valoda**
 
-      Go programmēšanas valoda ir kompilēta valodu ar ļoti labu veiktspēju. Tā ir domāta mikroservisu sistēmām un gan sarežģītiem, gan vienkāršiem serveriem. Gorutīnas ir viena no spilgtākajām šīs valodas funckionalitātēm, jo salīdzinot ar tradicionāliem threadiem, kas ir 2MB izmērā, gorutīnas process ir tikai daži KB atmiņas, tāpēc ir iespējams apstrādāt vairākus pieprasījumus laicīgi. Bet liels mīnuss ir, ka salīdzinot ar citām valodām, nav tik daudz iebūvēta funkcionalitāte, kā datubāzes, bet ir tikai pieejama vienkāršs klāsts ar bibliotēkām. LanShare lietotnei ir nepieciešama būt ātrai un patērēt maz resursus, lai aplikācija varētu strādāt vienmēr stipri nepalēninot datora veiktspēju.
+Go programmēšanas valoda ir kompilēta valoda ar ļoti labu veiktspēju. Tā ir piemērota gan vienkāršiem, gan sarežģītiem serveriem. Gorutīnas ļauj efektīvi apstrādāt vairākus pieprasījumus vienlaicīgi, patērējot maz atmiņas. LanShare lietotnei ir nepieciešams būt ātrai un patērēt maz resursu, lai tā varētu darboties, būtiski nepalēninot datora veiktspēju.
 
 2. **JavaScript, HTML un CSS**
 
-   Šīs ir standarta Web tehnoloģijas tīmekļa lietotņu izstrādei. Tās projektā tiek izmantotas, jo tās tiek atbalstītas daudzās ierīcēs 
-   * Pluss: Standarta tīmekļa tehnoloģijas, kuras atbalsta praktiski visas mūsdienu pārlūkprogrammas.
-   * Pluss: Ļauj izveidot interaktīvu un responsīvu tīmekļa saskarni.
-   * Pluss: Nav nepieciešams instalēt atsevišķu programmu klienta ierīcē.
-   * Izvēlētas, jo LanShare ir tīmekļa lietotne, kurai jādarbojas datoros un mobilajās ierīcēs.
-   * Atšķirībā no Flutter un WebAssembly, lietotnes izstrāde ar šīm tehnoloģijām ir daudz ātrāka un vienkāršāka, jo tās ir paredzētas tikai WEB izstrādei.
-   * HTML nodrošina lapas struktūru, CSS – vizuālo noformējumu, bet JavaScript – interaktivitāti un saziņu ar serveri.
+Šīs ir standarta tīmekļa tehnoloģijas tīmekļa lietotņu izstrādei. Tās projektā tiek izmantotas, jo tās tiek atbalstītas daudzās ierīcēs, kurās ir pieejama tīmekļa pārlūkprogramma. Nav nepieciešams instalēt papildu lietotni, jo lielākajai daļai ierīču jau ir tīmekļa pārlūkprogramma.
+
+LanShare ir Web lietotne, kurai jādarbojas gan datoros, gan mobilajās ierīcēs. Atšķirībā no Flutter un WebAssembly, lietotnes izstrāde ar šīm tehnoloģijām ir vienkāršāka, jo tās ir paredzētas tīmekļa izstrādei. HTML nodrošina lapas struktūru, CSS - vizuālo noformējumu, bet JavaScript - interaktivitāti un saziņu ar serveri.
 
 #### Izvēlēto tehnoloģiju pamatojums
 
 1. **React**
 
-   * Izvēlēts tīmekļa saskarnes izstrādei.
-   * Ļauj sadalīt saskarni atkārtoti izmantojamās komponentēs.
-   * Atvieglo dinamisku datu, piemēram, failu saraksta un augšupielādes statusa, attēlošanu.
-   * Salīdzinot ar vienkāršu JavaScript, React nodrošina ērtāku lielākas un interaktīvākas saskarnes izstrādi.
+React tika izvēlēts Web izstrādei, jo tas ļauj sadalīt vienu lielu HTML, JavaScript un CSS kodu mazākās komponentēs un tās izmantot atkārtoti.
 
 2. **SQLite**
 
-   * Izvēlēta datu glabāšanai, piemēram, failu metadatiem un servera konfigurācijai.
-   * Nav nepieciešams atsevišķs datubāzes serveris.
-   * Vienkārši uzstādāma un piemērota nelielai lokālā tīkla sistēmai.
-   * Atšķirībā no MySQL nav nepieciešams atsevišķi darbināt datubāzes serveri, tāpēc LanShare uzstādīšana ir vienkāršāka.
+SQLite tika izvēlēta datu glabāšanai, piemēram, failu metadatiem un servera konfigurācijai. Tai nav nepieciešams atsevišķs datubāzes serveris, tāpēc to ir vienkārši uzstādīt. Tādēļ lietotājam nav nepieciešams sarežģīt instalēšanu, uzstādot atsevišķu datubāzes serveri, piemēram, MySQL.
 
 3. **mDNS**
 
-   * Izvēlēts servera automātiskai atrašanai lokālajā tīklā.
-   * Ļauj lietotājiem piekļūt serverim, izmantojot `lanshare.local`, nevis meklējot servera IP adresi.
-   * Atšķirībā no manuālas IP adreses ievadīšanas lietotājam nav jāzina servera IP adrese.
+mDNS tika izvēlēts servera automātiskai atrašanai lokālajā tīklā. Tas ļauj lietotājiem piekļūt serverim, izmantojot `lanshare.local`, nevis meklējot un ievadot servera IP adresi.
 
 
 ---
@@ -456,44 +420,44 @@ Tehnoloģiju alternatīvas ir:
 
 ## Sistēmas struktūras modelis
 
-LanShare sistēmu veido Go serveris, React tīmekļa lietotne, SQLite datubāze, failu glabātuve un mDNS pakalpojums. Go serveris nodrošina galveno sistēmas darbību, apstrādā failu augšupielādi un lejupielādi, pārvalda failu dzēšanu un sazinās ar SQLite datubāzi. React tīmekļa lietotne nodrošina lietotāja saskarni, savukārt mDNS ļauj lokālajā tīklā piekļūt sistēmai, izmantojot adresi `lanshare.local`.
+LanShare sistēmu veido Go serveris, React tīmekļa lietotne, SQLite datubāze, failu glabātuve un mDNS serviss. Go serveris nodrošina galveno sistēmas darbību, apstrādā failu augšupielādi un lejupielādi, pārvalda failu dzēšanu un sazinās ar SQLite datubāzi. React lietotne nodrošina lietotāja saskarni, savukārt mDNS ļauj lokālajā tīklā piekļūt LanShare aplikācijai, izmantojot adresi `lanshare.local`.
 
 ### Datu bāzes struktūra
 
-LanShare datubāzē tiek glabāti dati par failiem, sistēmas iestatījumiem un administratora sesijām. Parastie lietotāji datubāzē netiek glabāti atsevišķā tabulā, bet tiek identificēti ar pārlūka `owner_cookie`.
+LanShare datubāzē tiek glabāti dati par failiem, sistēmas iestatījumiem un administratora sesijām. Lai saglabātu sistēmus vienkāršību un ērtību, lietotājiem nav konti, bet datubāzē tie tiek identificēti ar tīmekļa programmatūras cookie, kas tiek saglabāts katra faila ieraksta `owner_cookie` laukā.
 
 ### `files`
 
-| Lauks | Datu tips | Ierobežojumi | Apraksts |
-|---|---|---|---|
-| `id` | TEXT | PRIMARY KEY, NOT NULL | Unikāls datu ieraksta identifikators. |
-| `filename` | TEXT | NULL | Faila nosaukums, ja ierakstam ir pievienots fails. |
-| `storage_path` | TEXT | NULL, UNIQUE | Faila atrašanās vieta serverī, ja ierakstam ir pievienots fails. |
-| `size` | INTEGER | NULL, ≥ 0 | Faila izmērs baitos, ja ierakstam ir pievienots fails. |
+| Lauks | Datu tips | Ierobežojumi | Apraksts                                                              |
+|---|---|---|-----------------------------------------------------------------------|
+| `id` | TEXT | PRIMARY KEY, NOT NULL | Unikāls ieraksta identifikators.                                      |
+| `filename` | TEXT | NULL | Faila nosaukums, ja ierakstam ir pievienots fails.                    |
+| `storage_path` | TEXT | NULL, UNIQUE | Faila atrašanās vieta serverī, ja ierakstam ir pievienots fails.      |
+| `size` | INTEGER | NULL, ≥ 0 | Faila izmērs baitos, ja ierakstam ir pievienots fails.                |
 | `owner_cookie` | TEXT | NOT NULL | Pārlūka sīkdatnes identifikators, kas nosaka datu ieraksta īpašnieku. |
-| `text` | TEXT | NULL | Lietotāja pievienotais teksts. |
-| `url` | TEXT | NULL | Lietotāja pievienotā saite. |
-| `uploaded_at` | DATETIME | NOT NULL | Datu ieraksta izveides datums un laiks. |
-| `expires_at` | DATETIME | NULL | Datums un laiks, kad datu ierakstam beidzas derīguma termiņš. |
+| `text` | TEXT | NULL | Lietotāja pievienotais teksts.                                        |
+| `url` | TEXT | NULL | Lietotāja pievienotā saite.                                           |
+| `uploaded_at` | DATETIME | NOT NULL | Datu ieraksta izveides datums un laiks.                               |
+| `expires_at` | DATETIME | NULL | Datums un laiks, kad datu ierakstam beidzas derīguma termiņš.         |
 ### `settings`
 
-| Lauks | Datu tips | Ierobežojumi | Apraksts |
-|---|---|---|---|
-| `id` | INTEGER | PRIMARY KEY | Iestatījumu ieraksta identifikators. |
-| `storage_path` | TEXT | NOT NULL, UNIQUE | Ceļš uz mapi, kurā tiek glabāti faili. |
-| `storage_limit` | INTEGER | NOT NULL, > 0 | Maksimālais glabātuves izmērs baitos. |
-| `max_file_size` | INTEGER | NOT NULL, > 0 | Maksimālais viena faila izmērs baitos. |
+| Lauks | Datu tips | Ierobežojumi | Apraksts                                                 |
+|---|---|---|----------------------------------------------------------|
+| `id` | INTEGER | PRIMARY KEY | Unikāls ieraksta identifikators.                         |
+| `storage_path` | TEXT | NOT NULL, UNIQUE | Vieta, kurā tiek glabāti faili.                          |
+| `storage_limit` | INTEGER | NOT NULL, > 0 | Maksimālais glabātuves izmērs baitos.                    |
+| `max_file_size` | INTEGER | NOT NULL, > 0 | Maksimālais viena faila izmērs baitos.                   |
 | `uploads_enabled` | BOOLEAN | NOT NULL | Norāda, vai lietotājiem ir atļauts augšupielādēt failus. |
-| `default_expiry` | INTEGER | NULL, > 0 | Noklusējuma faila derīguma ilgums sekundēs. |
-| `admin_password_hash` | TEXT | NOT NULL | Administratora paroles hešs. |
+| `default_expiry` | INTEGER | NULL, > 0 | Noklusējuma faila derīguma ilgums sekundēs.              |
+| `admin_password_hash` | TEXT | NOT NULL | Administratora paroles hešs.                             |
 
 ### `admin_sessions`
 
-| Lauks | Datu tips | Ierobežojumi | Apraksts |
-|---|---|---|---|
-| `id` | TEXT | PRIMARY KEY, NOT NULL | Administratora sesijas unikāls identifikators. |
-| `created_at` | DATETIME | NOT NULL | Sesijas izveides datums un laiks. |
-| `expires_at` | DATETIME | NOT NULL | Datums un laiks, kad administratora sesija beidzas. |
+| Lauks | Datu tips | Ierobežojumi | Apraksts                                             |
+|---|---|---|------------------------------------------------------|
+| `id` | TEXT | PRIMARY KEY, NOT NULL | Unikāls ieraksta identifikators.                     |
+| `created_at` | DATETIME | NOT NULL | Sesijas izveides datums un laiks.                    |
+| `expires_at` | DATETIME | NOT NULL | Datums un laiks, kad administratora sesija beigsies. |
 
 **Piezīme:** LanShare nav atsevišķas `users` tabulas, jo parastie lietotāji tiek identificēti ar pārlūka `owner_cookie`.
 
@@ -501,42 +465,45 @@ LanShare datubāzē tiek glabāti dati par failiem, sistēmas iestatījumiem un 
 
 #### 1.1. Sistēmas struktūras diagramma
 
+Šeit tiek aprakstītas sistēmas galvenās daļas un kā tiek apstrādāti pieprasījumi.
 ![Produkta sistēmas struktūra](./assets/product-diagram.png)
 
 #### 1.2. Tīkla un mDNS struktūras diagramma
 
+Šeit tiek parādīts, kā lokālajā tīklā tiek reģistrēta `lanshare.local` adrese un kā lietotājs, izmantojot mDNS, piekļūst LanShare lietotnei.
 ![Tīkla un mDNS struktūra](./assets/mdns-diagram.png)
 
-#### Datu bāzes struktūras diagramma
+#### 1.3. ER diagramma
 
+ER diagramma attēlo datubāzes entītijas, laukus un ierobežojumus. Šajā ER diagrammā nav relāciju.
 ![ER diagramma](./assets/er-diagram.png)
-
-## Produkta papildfunkciju struktūras diagrammas
 
 #### 2.1. Failu augšupielādes un lejupielādes diagramma
 
+Šeit ir augsta līmeņa diagramma, kas attēlo, kā tiek apstrādāts pieprasījums augšupielādes un lejupielādes procesā.
 ![Failu augšupielāde un lejupielāde](./assets/download-upload-diagram.png)
 
 #### 2.2. Automātiskas failu dzēšanas diagramma
 
+Šeit ir augsta līmeņa diagramma, kas attēlo failu automātiskās dzēšanas procesu. Šim algoritmam nav beigu punkta, jo tas tiek izpildīts no programmas sākuma līdz tās izslēgšanas brīdim.
 ![Automātiska failu dzēšana](./assets/automatic-file-deletion-diagram.png)
 
-## Funkcionālais un dinamiskais sistēmas modelis
+#### 2.3. Lietojumgadījuma diagramma
+
+Šeit tiek attēlotas divas produkta lietotāju lomas: `administrators` un `lietotājs`. Šī diagramma attēlo, kāda funkcionalitāte ir pieejama katrai lietotāja lomai.
+![Lietojumgadījuma diagramma](./assets/lietojumgadījuma-diagramma.png)
 
 ### 3.1. Failu augšupielādes un lejupielādes datu plūsmas diagramma
 
+Šeit tiek attēlota datu plūsmas diagramma. Tā neattēlo precīzu algoritmu, bet parāda, kādi dati tiek nosūtīti, kur tie tiek apstrādāti un kādi dati tiek atgriezti. `Augšupielādes` procesā tiek nosūtīts fails un tā metadati, fails un metadati tiek saglabāti, un tiek atgriezta atbilde. `Lejupielādes` procesā tiek nosūtīts faila identifikators, pēc tam tiek atrasti faila metadati un tā atrašanās vieta, un tiek atgriezts fails lejupielādei.
 ![Failu augšupielādes un lejupielādes DFD](./assets/dfd-download-upload.png)
-
-[Īss diagrammas apraksts.]
 
 ### 3.2. Servera konfigurācijas datu plūsmas diagramma
 
+Datu plūsmas diagramma attēlo, kā notiek jaunās servera konfigurācijas pielietošana. Lietotājs nosūta jaunos iestatījumus, serveris tos saglabā SQLite datubāzē un pielieto jaunos iestatījumus.
 ![Servera konfigurācijas DFD](./assets/dfd-server-configuration.png)
-
-[Īss diagrammas apraksts.]
 
 ### 3.3. Administratora autentifikācijas datu plūsmas diagramma
 
+Diagramma attēlo, kā administrators autentificējas sistēmā. Sākumā parole tiek nosūtīta serverim, tā tiek hešota un no datubāzes tiek paņemts administrācijas paroles hešs. Ja tie sakrīt, tiek izveidota administratora sesija un atgriezta atbilstoša atbilde.
 ![Administratora autentifikācijas DFD](./assets/dfd-admin-login.png)
-
-[Īss diagrammas apraksts.]
