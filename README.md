@@ -392,7 +392,7 @@ JavaScript var izmantot gan klienta, gan servera puses izstrādei. Node.js ļauj
 
 Go programmēšanas valoda ir kompilēta valoda ar ļoti labu veiktspēju. Tā ir piemērota gan vienkāršiem, gan sarežģītiem serveriem. Gorutīnas ļauj efektīvi apstrādāt vairākus pieprasījumus vienlaicīgi, patērējot maz atmiņas. LanShare lietotnei ir nepieciešams būt ātrai un patērēt maz resursu, lai tā varētu darboties, būtiski nepalēninot datora veiktspēju.
 
-Go ir labāks par alternatīvām, jo tā programma tiek kompilēta vienā izpildāmā failā, kā arī citām programmēšanas valodām nav gorutīnu vai līdzīga risinājuma.
+Go tika izvēlēta, jo Go programma tiek kompilēta vienā izpildāmā failā, kā arī Go nodrošina gorutīnas vienlaicīgu pieprasījumu apstrādei.
 
 LanShare serverim ir nepieciešama vienkārša, ātra un maz resursu patērējoša programma, kuru var uzstādīt ikviens lietotājs.
 
