@@ -353,13 +353,12 @@ Sistēmai jāspēj vienlaicīgi apstrādāt vismaz 10 HTTP pieprasījumus.
 * Darbība lokālajā tīklā.
 * Windows un Linux atbalsts serverim.
 * Responsīva saskarne.
-* Drošība
+* Drošība un datu aizsardzība.
 
 
 ## Papildu nefunkcionālās prasības
 
 * Lietotājam nav nepieciešams instalēt atsevišķu programmu (izņemot pārlūkprogrammu)
-* Administrācijas panelim jābūt pieejamam - `lanshare.local/admin`.
 * Serverim jāspēj darboties bez interneta savienojuma.
 * Sistēmai jānodrošina kļūdu apstrāde un datu konsekvence.
 
