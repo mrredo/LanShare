@@ -9,8 +9,6 @@ Tā kā noskaidrojām ka failu pārsūtīšana caur internetu nav vienmēr ātra
 Nav viena konkrēta produkta, lietotnes, kas piedāvātu šādu risinājumu. Tāpēc ir nepieciešamība pēc viena konkrēta produkta. Tas ir **LanShare**. LanShare nodrošina failu, tekstu un saišu pārsūtīšanu starp ierīcēm un citiem cilvēkiem, kas ir pieslēgušies tam pašam tīklam. LanShare ir domāts kā palīdzības rīks skolēniem, skolotājiem, darbiniekiem, vadītājiem un citiem cilvēkiem, kuri regulāri izmanto vairākas ierīces un kuriem ir nepieciešams pārsūtīt informāciju uz citām ierīcēm. LanShare mērķis ir padarīt failu pārsūtīšanu vieglu, ērtu un ātru.
 
 
-
-
 Lai produktu īstenotu ir nepieciešamas šādas tehnoloģijas:
 * Go
 * React
