@@ -352,17 +352,13 @@ Sistēmai jāspēj vienlaicīgi apstrādāt vismaz 10 HTTP pieprasījumus.
 
 * Darbība lokālajā tīklā.
 * Windows un Linux atbalsts serverim.
-* Tīmekļa pārlūkprogrammas izmantošana klientā.
 * Responsīva saskarne.
-* Administratora autentifikācija.
-* Failu glabāšanas vietas kontrole.
-* Failu izmēra un augšupielādes ierobežojumu konfigurēšana.
+* Drošība
 
 
 ## Papildu nefunkcionālās prasības
 
-* Lietotājam nav nepieciešams instalēt atsevišķu programmu.
-* Servera konfigurācija jāveic administrācijas panelī, neveicot koda izmaiņas vai nerestartējot programmu.
+* Lietotājam nav nepieciešams instalēt atsevišķu programmu (izņemot pārlūkprogrammu)
 * Administrācijas panelim jābūt pieejamam - `lanshare.local/admin`.
 * Serverim jāspēj darboties bez interneta savienojuma.
 * Sistēmai jānodrošina kļūdu apstrāde un datu konsekvence.
