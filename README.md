@@ -463,47 +463,47 @@ LanShare datubāzē tiek glabāti dati par failiem, sistēmas iestatījumiem un 
 
 ### Produkta galveno struktūru diagrammas
 
-#### 1.1. Sistēmas struktūras diagramma
+#### Sistēmas struktūras diagramma
 
 Šeit tiek aprakstītas sistēmas galvenās daļas un kā tiek apstrādāti pieprasījumi.
 ![Produkta sistēmas struktūra](./assets/product-diagram.png)
 
-#### 1.2. Tīkla un mDNS struktūras diagramma
+#### Tīkla un mDNS struktūras diagramma
 
 Šeit tiek parādīts, kā lokālajā tīklā tiek reģistrēta `lanshare.local` adrese un kā lietotājs, izmantojot mDNS, piekļūst LanShare lietotnei.
 ![Tīkla un mDNS struktūra](./assets/mdns-diagram.png)
 
-#### 1.3. ER diagramma
+#### ER diagramma
 
 ER diagramma attēlo datubāzes entītijas, laukus un ierobežojumus. Šajā ER diagrammā nav relāciju.
 ![ER diagramma](./assets/er-diagram.png)
 
-#### 2.1. Failu augšupielādes un lejupielādes diagramma
+#### Failu augšupielādes un lejupielādes diagramma
 
 Šeit ir augsta līmeņa diagramma, kas attēlo, kā tiek apstrādāts pieprasījums augšupielādes un lejupielādes procesā.
 ![Failu augšupielāde un lejupielāde](./assets/download-upload-diagram.png)
 
-#### 2.2. Automātiskas failu dzēšanas diagramma
+#### Automātiskas failu dzēšanas diagramma
 
 Šeit ir augsta līmeņa diagramma, kas attēlo failu automātiskās dzēšanas procesu. Šim algoritmam nav beigu punkta, jo tas tiek izpildīts no programmas sākuma līdz tās izslēgšanas brīdim.
 ![Automātiska failu dzēšana](./assets/automatic-file-deletion-diagram.png)
 
-#### 2.3. Lietojumgadījuma diagramma
+#### Lietojumgadījuma diagramma
 
 Šeit tiek attēlotas divas produkta lietotāju lomas: `administrators` un `lietotājs`. Šī diagramma attēlo, kāda funkcionalitāte ir pieejama katrai lietotāja lomai.
 ![Lietojumgadījuma diagramma](./assets/lietojumgadījuma-diagramma.png)
 
-### 3.1. Failu augšupielādes un lejupielādes datu plūsmas diagramma
+### Failu augšupielādes un lejupielādes datu plūsmas diagramma
 
 Šeit tiek attēlota datu plūsmas diagramma. Tā neattēlo precīzu algoritmu, bet parāda, kādi dati tiek nosūtīti, kur tie tiek apstrādāti un kādi dati tiek atgriezti. `Augšupielādes` procesā tiek nosūtīts fails un tā metadati, fails un metadati tiek saglabāti, un tiek atgriezta atbilde. `Lejupielādes` procesā tiek nosūtīts faila identifikators, pēc tam tiek atrasti faila metadati un tā atrašanās vieta, un tiek atgriezts fails lejupielādei.
 ![Failu augšupielādes un lejupielādes DFD](./assets/dfd-download-upload.png)
 
-### 3.2. Servera konfigurācijas datu plūsmas diagramma
+### Servera konfigurācijas datu plūsmas diagramma
 
 Datu plūsmas diagramma attēlo, kā notiek jaunās servera konfigurācijas pielietošana. Lietotājs nosūta jaunos iestatījumus, serveris tos saglabā SQLite datubāzē un pielieto jaunos iestatījumus.
 ![Servera konfigurācijas DFD](./assets/dfd-server-configuration.png)
 
-### 3.3. Administratora autentifikācijas datu plūsmas diagramma
+### Administratora autentifikācijas datu plūsmas diagramma
 
 Diagramma attēlo, kā administrators autentificējas sistēmā. Sākumā parole tiek nosūtīta serverim, tā tiek hešota un no datubāzes tiek paņemts administrācijas paroles hešs. Ja tie sakrīt, tiek izveidota administratora sesija un atgriezta atbilstoša atbilde.
 ![Administratora autentifikācijas DFD](./assets/dfd-admin-login.png)
