@@ -46,9 +46,9 @@ Kad tiek ieslēgts LanShare serveris, tiek izveidots mDNS serviss un administrat
 
 # Prasību specifikācija
 
-## Sistēmas funkcionālās prasības
+## Funkcionālās prasības
 
-### Sistēmas lomas
+### Lomas
 
 LanShare sistēmā ir divas lomas:
 
@@ -292,7 +292,7 @@ Papildfunkcionalitāte:
 
 ---
 
-# Sistēmas nefunkcionālās prasības
+# Nefunkcionālās prasības
 
 ## Darbības vides prasības
 
