@@ -392,17 +392,15 @@ JavaScript var izmantot gan klienta, gan servera puses izstrādei. Node.js ļauj
 
 Go programmēšanas valoda ir kompilēta valoda ar ļoti labu veiktspēju. Tā ir piemērota gan vienkāršiem, gan sarežģītiem serveriem. Gorutīnas ļauj efektīvi apstrādāt vairākus pieprasījumus vienlaicīgi, patērējot maz atmiņas. LanShare lietotnei ir nepieciešams būt ātrai un patērēt maz resursu, lai tā varētu darboties, būtiski nepalēninot datora veiktspēju.
 
-2. **JavaScript, HTML un CSS**
+Go ir labāks par alternatīvām, jo tā programma tiek kompilēta vienā izpildāmā failā, kā arī citām programmēšanas valodām nav gorutīnu vai līdzīga risinājuma.
 
-Šīs ir standarta tīmekļa tehnoloģijas tīmekļa lietotņu izstrādei. Tās projektā tiek izmantotas, jo tās tiek atbalstītas daudzās ierīcēs, kurās ir pieejama tīmekļa pārlūkprogramma. Nav nepieciešams instalēt papildu lietotni, jo lielākajai daļai ierīču jau ir tīmekļa pārlūkprogramma.
-
-LanShare ir Web lietotne, kurai jādarbojas gan datoros, gan mobilajās ierīcēs. Atšķirībā no Flutter un WebAssembly, lietotnes izstrāde ar šīm tehnoloģijām ir vienkāršāka, jo tās ir paredzētas tīmekļa izstrādei. HTML nodrošina lapas struktūru, CSS - vizuālo noformējumu, bet JavaScript - interaktivitāti un saziņu ar serveri.
+LanShare serverim ir nepieciešama vienkārša, ātra un maz resursu patērējoša programma, kuru var uzstādīt ikviens cilvēks.
 
 #### Izvēlēto tehnoloģiju pamatojums
 
 1. **React**
 
-React tika izvēlēts Web izstrādei, jo tas ļauj sadalīt vienu lielu HTML, JavaScript un CSS kodu mazākās komponentēs un tās izmantot atkārtoti.
+React tika izvēlēts tīmekļa lietotnes izstrādei, jo tas ļauj sadalīt lietotni mazākās un atkārtoti izmantojamās komponentēs. Piemēram, failu sarakstu var veidot no atsevišķām faila komponentēm, kuras tiek atkārtoti izmantotas katram failam. Tas atvieglo lietotnes izstrādi un koda uzturēšanu.
 
 2. **SQLite**
 
@@ -410,7 +408,7 @@ SQLite tika izvēlēta datu glabāšanai, piemēram, failu metadatiem un servera
 
 3. **mDNS**
 
-mDNS tika izvēlēts servera automātiskai atrašanai lokālajā tīklā. Tas ļauj lietotājiem piekļūt serverim, izmantojot `lanshare.local`, nevis meklējot un ievadot servera IP adresi.
+mDNS tika izvēlēts servera automātiskai atrašanai lokālajā tīklā. Tas ļauj lietotājiem piekļūt serverim, izmantojot adresi lanshare.local, nevis meklēt un ievadīt servera IP adresi.
 
 
 ---
