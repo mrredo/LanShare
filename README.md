@@ -1,6 +1,7 @@
 # LanShare
 
-Cilvēkiem mūsdienās ir vairākas ierīces: telefoni, datori utt. Un rodas nepieciešamība pārsūtīt tekstu, linkus un failus starp šīm ierīcēm. Ir daudzi veidi, kā to darīt, izmantojot vadu, mākoņpakalpojumus, ziņapmaiņas lietotnes, kā WhatsApp, Discord utt., vai USB zibatmiņas.
+
+Cilvēkiem mūsdienās ir vairākas ierīces: telefoni, datori utt. Un rodas nepieciešamība pārsūtīt tekstu, linkus un failus starp šīm ierīcēm. Var būt daudz iemeslu, kāpēc  tas ir nepieciešams, piemēram, jāpārsūta bildes uz datoru, kuras jāliek prezentācijā, jānosūta saite, ko atradi datorā, bet vēlies atvērt telefonā, jāpārsūta liels zip fails uz datoru, ko lejupielādēji telefonā.  Ir daudzi veidi, kā to darīt, izmantojot vadu, mākoņpakalpojumus, ziņapmaiņas lietotnes, kā WhatsApp, Discord utt., vai USB zibatmiņas.   
 
 Tomēr šīm metodēm ir savi trūkumi. Vada savienojamībai ir problēma, piemēram, pārvietojot failus no telefona, lietotājam ir jāmeklē fails, jāpārvieto tas, un tas process ir ļoti ilgs un ne vienmēr ir veiksmīgs. Lai nebūtu jāiet meklēt vads, bet visu varētu darīt pie datora, cilvēki izmanto Google disku, WhatsApp, Discord. Tie strādā, tomēr tie ne vienmēr ir ātri, jo tiek izmantots internets, un drošība ir apdraudēta, jo faili tiek sūtīti pa internetu un cilvēki, kuriem nav jāredz šie faili, var nokļūt pie tiem. Bieži vien šādiem pakalpojumiem ir ierobežojumi, kas neļauj pārsūtīt ļoti lielus failus. Lai izmantotu šādus pakalpojumus, ir nepieciešams instalēt papildu programmas.
 
@@ -8,6 +9,7 @@ Tā kā noskaidrojām ka failu pārsūtīšana caur internetu nav vienmēr ātra
 
 Nav viena konkrēta produkta, lietotnes, kas piedāvātu šādu risinājumu. Tāpēc ir nepieciešamība pēc viena konkrēta produkta. Tas ir **LanShare**. LanShare nodrošina failu, tekstu un saišu pārsūtīšanu starp ierīcēm un citiem cilvēkiem, kas ir pieslēgušies tam pašam tīklam. LanShare ir domāts kā palīdzības rīks skolēniem, skolotājiem, darbiniekiem, vadītājiem un citiem cilvēkiem, kuri regulāri izmanto vairākas ierīces un kuriem ir nepieciešams pārsūtīt informāciju uz citām ierīcēm. LanShare mērķis ir padarīt failu pārsūtīšanu vieglu, ērtu un ātru.
 
+Nākotnē LanShare varētu paplašināt uz mobilo aplikāciju un pievienot failu dalīšanos pa internetu.
 
 Lai produktu īstenotu ir nepieciešamas šādas tehnoloģijas:
 * Go
@@ -365,7 +367,9 @@ Sistēmai jāspēj vienlaicīgi apstrādāt vismaz 10 HTTP pieprasījumus.
 ## Uzdevuma risināšanas līdzekļu apraksts un izvēles pamatojums
 
 ### Iespējamo risinājuma līdzekļu un valodu apraksts
-
+kas tā ir;
+ko tā nodrošina;
+kāpēc tā būtu piemērota LanShare.
 **1. PHP + Laravel + MySQL**
 
 PHP ir programmēšanas valoda, kurai ir plašs bibliotēku un ietvaru klāsts. Laravel ir PHP ietvars, kas izveido projekta struktūru un nodrošina funkcionalitāti darbam ar datubāzi, HTTP serveri un Web lietotni vienā projektā.
@@ -417,9 +421,9 @@ mDNS tika izvēlēts servera automātiskai atrašanai lokālajā tīklā. Tas ļ
 
 LanShare sistēmu veido Go serveris, React tīmekļa lietotne, SQLite datubāze, failu glabātuve un mDNS serviss. Go serveris nodrošina galveno sistēmas darbību, apstrādā failu augšupielādi un lejupielādi, pārvalda failu dzēšanu un sazinās ar SQLite datubāzi. React lietotne nodrošina lietotāja saskarni, savukārt mDNS ļauj lokālajā tīklā piekļūt LanShare aplikācijai, izmantojot adresi `lanshare.local`.
 
-### Datu bāzes struktūra
+### Datu vārdnīca
 
-LanShare datubāzē tiek glabāti dati par failiem, sistēmas iestatījumiem un administratora sesijām. Lai saglabātu sistēmus vienkāršību un ērtību, lietotājiem nav konti, bet datubāzē tie tiek identificēti ar tīmekļa programmatūras cookie, kas tiek saglabāts katra faila ieraksta `owner_cookie` laukā.
+Datu vārdnīca apraksta LanShare datubāzē izmantotos laukus, to datu tipus, ierobežojumus un nozīmi.
 
 ### `files`
 
