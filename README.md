@@ -375,15 +375,17 @@ Sistēmai jāspēj vienlaicīgi apstrādāt vismaz 10 HTTP pieprasījumus.
 
 **1. PHP + Laravel + MySQL**
 
-PHP ir programmēšanas valoda, kurai ir plašs bibliotēku un ietvaru klāsts. Laravel ir PHP ietvars, kas nodrošina nepieciešamās funkcijas darbam ar datubāzi, autentifikāciju un tīmekļa pieprasījumiem. MySQL ir piemērots lielākām sistēmām ar daudziem lietotājiem un nodrošina labu veiktspēju un vienlaicīgu pieprasījumu apstrādi.
+PHP ir programmēšanas valoda, kurai ir plašs bibliotēku un ietvaru klāsts. Laravel ir PHP ietvars, kas izveido projekta struktūru un nodrošina funkcionalitāti darbam ar datubāzi, HTTP serveri un Web lietotni vienā projektā.
 
 **2. Java + Spring Boot + MySQL**
 
-Java ir piemērota tīmekļa serveru un tīkla lietotņu izstrādei. Spring Boot ir tehnoloģija, ko var izmantot tīmekļa lietotņu un serveru izstrādei. MySQL var izmantot datu glabāšanai, un tas nodrošina labu veiktspēju, apstrādājot vairākus pieprasījumus vienlaicīgi.
+Java darbojas uz daudzām operētājsistēmām. Tā ir statiski tipizēta valoda, kas ļauj pamanīt kļūdas izstrādes laikā. Spring Boot ir ietvars, kas izveido Web serveri un nodrošina saziņu ar datubāzi. Tas ir piemērots REST API izveidei, un ir pieejamas anotācijas, kas samazina koda atkārtošanos un boilerplate kodu.
 
 **3. JavaScript + Node.js + React + MySQL**
 
-JavaScript var izmantot gan klienta, gan servera puses izstrādei. Node.js ļauj izmantot JavaScript servera puses izstrādei, bet React var izmantot tīmekļa saskarnes izstrādei. Tas samazina mentālo slodzi, jo nav jāpārslēdzas starp programmēšanas valodām. MySQL var izmantot datu glabāšanai un tas ir piemērots sistēmām ar daudziem lietotājiem.
+JavaScript var izmantot gan klienta, gan servera puses izstrādei. Node.js ļauj izmantot JavaScript servera puses izstrādei, bet React var izmantot Web lietotnes izstrādei. Tas samazina mentālo slodzi, jo nav jāpārslēdzas starp programmēšanas valodām.
+
+* MySQL var izmantot datu glabāšanai un tas ir piemērots sistēmām ar daudziem lietotājiem.
 
 ### Izvēlēto risinājuma līdzekļu un valodu apraksts
 
