@@ -346,7 +346,7 @@ Administrācijas sadaļa ir pieejama tikai administratoram.
 
 Failu pārsūtīšanas ātrumu nosaka lokālā tīkla un servera aparatūras veiktspēja. Sistēma nenosaka atsevišķu fiksētu maksimālo pārsūtīšanas ātrumu.
 
-Parastiem API pieprasījumiem atbildes laiks nedrīkst pārsniegt **2 sekundes**. Lielu failu augšupielādei un lejupielādei šis ierobežojums neattiecas.
+Parastiem API pieprasījumiem atbildes laiks nedrīkst pārsniegt **2 sekundes**. Uz failu augšupielādēšanu un lejupielādēšanu šis nosacījums neattiecas.
 
 Sistēmai jāspēj vienlaicīgi apstrādāt vismaz 10 HTTP pieprasījumus.
 
