@@ -382,7 +382,7 @@ Java darbojas uz daudzām operētājsistēmām. Tā ir statiski rakstīta valoda
 
 JavaScript var izmantot gan klienta, gan servera puses izstrādei. Node.js ļauj izmantot JavaScript servera puses izstrādei, bet React var izmantot Web lietotnes izstrādei. Tas samazina mentālo slodzi, jo nav jāpārslēdzas starp programmēšanas valodām.
 
-* MySQL var izmantot datu glabāšanai un tas ir piemērots sistēmām ar daudziem lietotājiem.
+* MySQL var izmantot datu glabāšanai un tas ir piemērots sistēmām ar daudziem lietotājiem. Šis risinājums nenoderētu LanShare programmai, jo tas ir atsevišķš serveris un LanShare nesaglabā tik daudz datu datubāzē.
 
 ### Izvēlēto risinājuma līdzekļu un valodu apraksts
 
