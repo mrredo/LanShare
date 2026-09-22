@@ -367,9 +367,7 @@ Sistēmai jāspēj vienlaicīgi apstrādāt vismaz 10 HTTP pieprasījumus.
 ## Uzdevuma risināšanas līdzekļu apraksts un izvēles pamatojums
 
 ### Iespējamo risinājuma līdzekļu un valodu apraksts
-kas tā ir;
-ko tā nodrošina;
-kāpēc tā būtu piemērota LanShare.
+
 **1. PHP + Laravel + MySQL**
 
 PHP ir programmēšanas valoda, kurai ir plašs bibliotēku un ietvaru klāsts. Laravel ir PHP ietvars, kas izveido projekta struktūru un nodrošina funkcionalitāti darbam ar datubāzi, HTTP serveri un Web lietotni vienā projektā.
@@ -393,6 +391,7 @@ JavaScript var izmantot gan klienta, gan servera puses izstrādei. Node.js ļauj
 Go programmēšanas valoda ir kompilēta valoda ar ļoti labu veiktspēju. Tā ir piemērota gan vienkāršiem, gan sarežģītiem serveriem. Gorutīnas ļauj efektīvi apstrādāt vairākus pieprasījumus vienlaicīgi, patērējot maz atmiņas. LanShare lietotnei ir nepieciešams būt ātrai un patērēt maz resursu, lai tā varētu darboties, būtiski nepalēninot datora veiktspēju.
 
 Go tika izvēlēta, jo Go programma tiek kompilēta vienā izpildāmā failā, kā arī Go nodrošina gorutīnas vienlaicīgu pieprasījumu apstrādei.
+Salīdzinot ar Java programmēšanas valodu, Go nav nepieciešams JVM, lai izpildītu programmu.
 
 LanShare serverim ir nepieciešama vienkārša, ātra un maz resursu patērējoša programma, kuru var uzstādīt ikviens lietotājs.
 
@@ -400,8 +399,7 @@ LanShare serverim ir nepieciešama vienkārša, ātra un maz resursu patērējo�
 
 1. **React**
 
-React tika izvēlēts tīmekļa lietotnes izstrādei, jo tas ļauj sadalīt lietotni mazākās un atkārtoti izmantojamās komponentēs. Piemēram, failu sarakstu var veidot no atsevišķām faila komponentēm, kuras tiek atkārtoti izmantotas katram failam. Tas atvieglo lietotnes izstrādi un koda uzturēšanu.
-
+React tika izvēlēts tīmekļa lietotnes izstrādei, jo tas ļauj sadalīt lietotni mazākās un atkārtoti izmantojamās komponentēs, kas parastā HTML, CSS un JS Web aplikācijā būtu sarežģītāks process. Piemēram, failu sarakstu var veidot no atsevišķām faila komponentēm, kuras tiek atkārtoti izmantotas katram failam. Tas atvieglo lietotnes izstrādi un koda uzturēšanu. 
 2. **SQLite**
 
 SQLite tika izvēlēta datu glabāšanai, piemēram, failu metadatiem un servera konfigurācijai. Tai nav nepieciešams atsevišķs datubāzes serveris, tāpēc to ir vienkārši uzstādīt. Tādēļ lietotājam nav nepieciešams sarežģīt instalēšanu, uzstādot atsevišķu datubāzes serveri, piemēram, MySQL.
