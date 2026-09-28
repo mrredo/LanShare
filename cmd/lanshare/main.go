@@ -1,55 +1,45 @@
 package main
 
 import (
-	"net"
+	"fmt"
+	"os"
 
-	"github.com/gin-gonic/gin"
-	"github.com/pion/mdns/v2"
-	"golang.org/x/net/ipv4"
-	"golang.org/x/net/ipv6"
+	"lanshare/config"
+	"lanshare/internal/app"
+	"lanshare/internal/db"
+	"lanshare/internal/mdns"
 )
 
 func main() {
-	router := gin.Default()
+	database := db.NewService()
+	err := database.Start()
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println("Datubāze veiksmīgi startēta")
 
-	router.GET("/", func(c *gin.Context) {
-		c.String(200, "Hello")
-	})
+	currentSettings, err := app.SettingsStartup(database)
+	if err != nil {
+		fmt.Printf("Startēšana pārtraukta: %v\n", err)
+		return
+	}
+
+	application := app.NewApp(database, currentSettings)
+	_ = application
+
+	if currentSettings != nil && currentSettings.StoragePath != "" {
+		if err := os.MkdirAll(currentSettings.StoragePath, 0755); err != nil {
+			fmt.Printf("Brīdinājums: neizdevās izveidot glabāšanas mapi '%s': %v\n", currentSettings.StoragePath, err)
+		}
+	}
 
 	go func() {
-		if err := router.Run(":80"); err != nil {
-			panic(err)
-		}
+		application.Router.Serve()
 	}()
 
-	addr4, err := net.ResolveUDPAddr("udp4", mdns.DefaultAddressIPv4)
-	if err != nil {
-		panic(err)
-	}
-
-	addr6, err := net.ResolveUDPAddr("udp6", mdns.DefaultAddressIPv6)
-	if err != nil {
-		panic(err)
-	}
-
-	l4, err := net.ListenUDP("udp4", addr4)
-	if err != nil {
-		panic(err)
-	}
-
-	l6, err := net.ListenUDP("udp6", addr6)
-	if err != nil {
-		panic(err)
-	}
-
-	_, err = mdns.NewServer(
-		ipv4.NewPacketConn(l4),
-		ipv6.NewPacketConn(l6),
-		mdns.WithLocalNames("lanshare.local"),
-	)
-	if err != nil {
-		panic(err)
-	}
-
+	mdnsServer := mdns.NewMDNsServer(config.DomainName)
+	go func() {
+		mdnsServer.Serve(config.DomainName)
+	}()
 	select {}
 }

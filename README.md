@@ -83,21 +83,31 @@ Lietotājs var izmantot LanShare un redzēt savus failus.
 
 ### 2. Administratora sākotnējā konfigurācija
 
-Pirmo reizi startējot LanShare serveri, tiek pārbaudīts, vai administratora parole jau ir iestatīta.
+Pirmo reizi startējot LanShare serveri, serveris pārbauda, vai administratora parole jau ir iestatīta.
 
-Ja parole nav iestatīta, serveris pieprasa to ievadīt.
+Ja administratora parole nav iestatīta, serveris uzsāk sākotnējās konfigurācijas procesu.
 
-**Ievades dati:**
+**1. Administratora paroles iestatīšana**
 
-* **Administratora parole** - parole administrācijas sadaļas aizsardzībai.
+Serveris piedāvā izvēlēties, kā iestatīt administratora paroli:
 
-**Apstrāde:**
+* **Atstāt esošo paroli** — ja parole jau ir konfigurēta un to nepieciešams saglabāt.
+* **Iestatīt jaunu paroli** — serveris pieprasa ievadīt jaunu administratora paroli.
 
-Serveris pārbauda ievadīto paroli un saglabā tās hešu SQLite datubāzē. Pati parole datubāzē netiek saglabāta.
+Ja tiek iestatīta jauna parole, serveris to pārbauda un saglabā tās hešu SQLite datubāzē. Pati parole datubāzē netiek saglabāta.
+
+**2. Servera konfigurācijas izvēle**
+
+Pēc administratora paroles konfigurēšanas serveris piedāvā izvēlēties konfigurācijas avotu:
+
+* **Izmantot noklusējuma konfigurāciju** — serveris izmanto sistēmā definētās noklusējuma konfigurācijas vērtības.
+* **Ielādēt konfigurāciju no faila** — serveris pieprasa konfigurācijas faila atrašanās vietu un ielādē tajā norādītos iestatījumus.
+
+Ja konfigurācijas fails nav atrodams vai tā saturs nav derīgs, serveris informē administratoru par kļūdu un nepieņem konfigurāciju.
 
 **Rezultāts:**
 
-Administrators var autentificēties administrācijas sadaļā `lanshare.local/admin`.
+Pēc sākotnējās konfigurācijas pabeigšanas serveris saglabā nepieciešamos iestatījumus un turpina parasto darbību. Administrators var autentificēties administrācijas sadaļā `lanshare.local/admin`.
 
 ### 3. Administratora autentifikācija
 
@@ -131,7 +141,7 @@ Lietotājs pēc izvēles pievieno failu, tekstu, URL un derīguma termiņu. Vism
 * **Fails**
 * **Teksts**
 * **URL**
-* **Derīguma termiņš** - nav obligāts, ja nav noradīts tiek izmantota noklusējuma vērtība: `1 diena`.
+* **Derīguma termiņš** - nav obligāts, ja nav norādīts, tiek izmantota noklusējuma vērtība: `1 diena`.
 * **Ierīces cookie**
 
 **Apstrāde:**
@@ -140,14 +150,21 @@ Ja ir pievienots fails, serveris pārbauda, vai failu augšupielāde ir atļauta
 
 Ja failu glabāšanas mape neeksistē, serveris pārbauda konfigurācijā norādīto mapes atrašanās vietu. Ja atrašanās vieta nav norādīta, serveris izveido noklusējuma `/uploads` direktoriju.
 
-Ja ir pievienots fails, tas tiek saglabāts serverī, bet tā metadati tiek saglabāti SQLite datubāzē.
+Ja ir pievienots fails, serveris ģenerē unikālu nejaušu faila nosaukumu un saglabā failu serverī ar šo nosaukumu. Faila sākotnējais nosaukums tiek saglabāts SQLite datubāzē un tiek izmantots, lai lietotājam parādītu failu ar tā sākotnējo nosaukumu. Lai saglabātu faila tipu, ģenerētajam faila nosaukumam tiek saglabāts arī sākotnējais faila paplašinājums.
+
+Piemēram, ja lietotājs augšupielādē failu `Mana prezentācija.pptx`, serverī fails var tikt saglabāts ar nosaukumu `hizx67y8.pptx`, bet lietotājam tiek parādīts sākotnējais nosaukums `Mana prezentācija.pptx`.
+
+Faila metadati tiek saglabāti SQLite datubāzē.
 
 Datu ierakstam tiek piešķirts unikāls identifikators un tā īpašnieka cookie identifikators.
 
-Tiek izveidota koplietošanas saite, ja tāda jau eksistē, tiek izveidota jauna, līdz kamēr tā ir unikāla.
+Tiek ģenerēts unikāls koplietošanas identifikators. Serveris pārbauda tā unikalitāti datubāzē un nepieciešamības gadījumā ģenerē jaunu identifikatoru, līdz tiek iegūts unikāls identifikators.
+
+Ja lietotājs nav norādījis derīguma termiņu, tiek izmantota konfigurācijā norādītā noklusējuma vērtība.
 
 **Rezultāts:**
-Lietotājam tiek atgriezta saite, kur var piekļūt klāt augšupielādētajai informācijai.
+
+Lietotājam tiek atgriezta saite, kur var piekļūt augšupielādētajai informācijai.
 
 ```json
 {
