@@ -1,9 +1,12 @@
 package files
 
 import (
+	"errors"
 	"fmt"
 	"lanshare/config"
+	"log"
 	"net/http"
+	"os"
 
 	"github.com/gin-gonic/gin"
 )
@@ -82,15 +85,58 @@ func (h *Handler) DownloadFile(c *gin.Context) {
 }
 
 func (h *Handler) DeleteFile(c *gin.Context) {
+	ownerCookie, err := c.Cookie(config.SessionCookie)
+	if err != nil {
+	}
+	adminCookie, err := c.Cookie(config.AdminSessionCookie)
+	if err != nil {
+	}
 	fileParam := c.Param("file")
-	// get file
-	// delete file from db and storage
-	// return success
 	file, err := h.service.GetById(fileParam)
 	if err != nil {
+		// TODO:
 
 		return
 	}
-	h.ser
+
+	// pārbaudām, vai pieder fails (Ja ir admin cookie, šis neskaitās)
+	if ownerCookie != file.OwnerCookie && adminCookie != "" {
+		c.JSON(http.StatusForbidden, gin.H{
+			"error": "Tev nepieder šis fails!",
+		})
+		return
+	}
+	// pārbaudām, vai ir admin
+	if !h.service.authService.IsAdminSessionValid(adminCookie) {
+		c.JSON(http.StatusForbidden, gin.H{
+			"error": "Tu neesi administrators!",
+		})
+		return
+	}
+
+	if err := h.service.DeleteById(fileParam); err != nil {
+		log.Println(err)
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"error": "Faila dzēšana neizdevās.",
+		})
+		return
+
+	}
+	if file.StoragePath != nil {
+		if err := os.Remove(*file.StoragePath); err != nil && !errors.Is(err, os.ErrNotExist) {
+			log.Println(err)
+			c.JSON(http.StatusInternalServerError, gin.H{
+				"error": "Faila dzēšana neizdevās!",
+			})
+			return
+		}
+	}
+
+	c.JSON(
+		http.StatusOK,
+		gin.H{
+			"success": true,
+		},
+	)
 
 }

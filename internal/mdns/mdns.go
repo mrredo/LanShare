@@ -54,5 +54,5 @@ func (m *MdnsServer) Serve(domain string) {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println("Listening on " + domain)
+	fmt.Printf("\n✓ LanShare ir palaists\n\n  Adrese:\n  → http://%s\n\n  Lai apturētu serveri, nospiediet Ctrl+C\n\n", domain)
 }

@@ -3,6 +3,7 @@ package api
 import (
 	"crypto/rand"
 	"encoding/hex"
+	"lanshare/config"
 
 	"github.com/gin-gonic/gin"
 )
@@ -27,7 +28,7 @@ func setOwnerCookie(c *gin.Context) error {
 		60*60*24*365,
 		"/",
 		"",
-		false,
+		config.CookiesOnHTTPSOnly,
 		true,
 	)
 

@@ -1,8 +1,9 @@
-package admin
+package auth
 
 import (
 	"crypto/rand"
 	"encoding/hex"
+	"lanshare/config"
 	"lanshare/internal/settings"
 	"time"
 )
@@ -28,7 +29,7 @@ func (s *Service) CreateSession() (*AdminSession, error) {
 	session := &AdminSession{
 		ID:        hex.EncodeToString(bytes),
 		CreatedAt: time.Now(),
-		ExpiresAt: time.Now().Add(24 * time.Hour),
+		ExpiresAt: time.Now().Add(config.AdminSessionCookieAge * time.Second),
 	}
 
 	if err := s.repo.Create(session); err != nil {
@@ -37,20 +38,23 @@ func (s *Service) CreateSession() (*AdminSession, error) {
 
 	return session, nil
 }
-func (s *Service) IsSessionValid(sessionId string) bool {
-	session, err := s.GetById(sessionId)
-	// Neeksistē sesija
+
+func (s *Service) IsAdminSessionValid(adminCookie string) bool {
+	cookie, err := s.GetByCookie(adminCookie)
 	if err != nil {
 		return false
 	}
-	// Vai ir beidzies termiņš
-	if time.Now().After(session.ExpiresAt) {
+	if cookie.IsExpired() {
 		return false
 	}
 	return true
 }
+
 func (s *Service) GetById(id string) (*AdminSession, error) {
 	return s.repo.GetById(id)
+}
+func (s *Service) GetByCookie(cookie string) (*AdminSession, error) {
+	return s.GetById(cookie)
 }
 
 func (s *Service) Create(session *AdminSession) error {

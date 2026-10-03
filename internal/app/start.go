@@ -2,8 +2,8 @@ package app
 
 import (
 	"lanshare/config"
-	"lanshare/internal/admin"
 	"lanshare/internal/api"
+	"lanshare/internal/auth"
 	"lanshare/internal/db"
 	"lanshare/internal/files"
 	"lanshare/internal/settings"
@@ -32,8 +32,8 @@ func NewApp(args ...any) *App {
 	settingsRepo := settings.NewRepo(dbService.DB())
 	settingsService := settings.NewService(settingsRepo, active)
 
-	adminRepo := admin.NewRepo(dbService.DB())
-	adminService := admin.NewService(adminRepo, settingsService)
+	adminRepo := auth.NewRepo(dbService.DB())
+	adminService := auth.NewService(adminRepo, settingsService)
 
 	filesRepo := files.NewRepo(dbService.DB())
 	filesService := files.NewService(filesRepo, settingsService, adminService)
@@ -43,7 +43,7 @@ func NewApp(args ...any) *App {
 	apiGroup := router.Router().Group("/api")
 	authGroup := router.Router().Group("/auth")
 
-	adminHandler := admin.NewHandler(adminService)
+	adminHandler := auth.NewHandler(adminService)
 	adminHandler.RegisterRoutes(authGroup)
 
 	filesHandler := files.NewHandler(filesService)

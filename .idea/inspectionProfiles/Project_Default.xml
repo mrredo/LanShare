@@ -4,6 +4,7 @@
     <inspection_tool class="GoDfaErrorMayBeNotNil" enabled="true" level="WARNING" enabled_by_default="true">
       <methods>
         <method importPath="lanshare/internal/admin" receiver="*Service" name="CreateSession" />
+        <method importPath="lanshare/internal/auth" receiver="*Service" name="CreateSession" />
       </methods>
     </inspection_tool>
     <inspection_tool class="GoResourceLeak" enabled="true" level="WARNING" enabled_by_default="true">

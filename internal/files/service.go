@@ -4,7 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
-	"lanshare/internal/admin"
+	"lanshare/internal/auth"
 	"lanshare/internal/settings"
 	"lanshare/pkg/str"
 	"os"
@@ -17,14 +17,14 @@ import (
 type Service struct {
 	repo            *Repo
 	settingsService *settings.Service
-	adminService    *admin.Service
+	authService     *auth.Service
 }
 
-func NewService(repo *Repo, settingsService *settings.Service, adminService *admin.Service) *Service {
+func NewService(repo *Repo, settingsService *settings.Service, authService *auth.Service) *Service {
 	return &Service{
 		repo:            repo,
 		settingsService: settingsService,
-		adminService:    adminService,
+		authService:     authService,
 	}
 }
 func (s *Service) CreateFile(uploadDto *UploadDTO, ownerCookie string) (*File, error) {
@@ -41,7 +41,7 @@ func (s *Service) CreateFile(uploadDto *UploadDTO, ownerCookie string) (*File, e
 		ext := filepath.Ext(uploadDto.File.Filename)
 		path := filepath.Join(s.settingsService.Get().StoragePath, id+ext)
 
-		// Vai mape eksistē
+		// izveido mapi, kur glabāt failus
 		if err := os.MkdirAll(filepath.Dir(path), 0755); err != nil {
 			return nil, fmt.Errorf("neizdevās izveidot mapi: %w", err)
 		}
@@ -129,39 +129,34 @@ func (s *Service) GetById(id string) (File, error) {
 	return file, err
 }
 
-//
-//func (s *Service) CountFilesByOwnerCookie(ownerCookie string) (int64, error) {
-//	return s.repo.CountFilesByOwnerCookie(ownerCookie)
-//}
-//
-//func (s *Service) CountAllFiles() (int64, error) {
-//	return s.repo.CountAllFiles()
-//}
-//
+// CountFilesByOwnerCookie returns the total count of files associated with the given owner cookie.
+func (s *Service) CountFilesByOwnerCookie(ownerCookie string) (int64, error) {
+	return s.repo.CountFilesByOwnerCookie(ownerCookie)
+}
 
-//
-//func (s *Service) GetAllByOwnerCookie(ownerCookie string) ([]File, error) {
-//	return s.repo.GetAllByOwnerCookie(ownerCookie)
-//}
-//
-//
-////
-////func (s *Service) DeleteAll() error {
-////	return s.repo.DeleteAll()
-////}
-////
-////func (s *Service) DeleteById(id string) error {
-////	return s.repo.DeleteById(id)
-////}
-////
-////func (s *Service) DeleteByOwnerCookie(ownerCookie string) error {
-////	return s.repo.DeleteByOwnerCookie(ownerCookie)
-////}
-////
-////func (s *Service) FindExpired() ([]File, error) {
-////	return s.repo.FindExpired()
-////}
-////
-////func (s *Service) DeleteExpired() error {
-////	return s.repo.DeleteExpired()
-////}
+func (s *Service) CountAllFiles() (int64, error) {
+	return s.repo.CountAllFiles()
+}
+
+func (s *Service) GetAllByOwnerCookie(ownerCookie string) ([]File, error) {
+	return s.repo.GetAllByOwnerCookie(ownerCookie)
+}
+
+// DeleteAll removes all records from the underlying repository and returns an error if the operation fails.
+func (s *Service) DeleteAll() error {
+	return s.repo.DeleteAll()
+}
+func (s *Service) DeleteById(id string) error {
+	return s.repo.DeleteById(id)
+}
+func (s *Service) DeleteByOwnerCookie(ownerCookie string) error {
+	return s.repo.DeleteByOwnerCookie(ownerCookie)
+}
+
+func (s *Service) FindExpired() ([]File, error) {
+	return s.repo.FindExpired()
+}
+
+func (s *Service) DeleteExpired() error {
+	return s.repo.DeleteExpired()
+}

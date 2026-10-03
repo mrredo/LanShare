@@ -1,4 +1,4 @@
-package admin
+package auth
 
 import (
 	"time"
@@ -12,6 +12,9 @@ type AdminSession struct {
 
 func (AdminSession) TableName() string {
 	return "admin_sessions"
+}
+func (as AdminSession) IsExpired() bool {
+	return time.Now().After(as.ExpiresAt)
 }
 
 type Session = AdminSession

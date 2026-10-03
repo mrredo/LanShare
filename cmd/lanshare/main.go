@@ -10,7 +10,11 @@ import (
 	"lanshare/internal/mdns"
 )
 
+////go:embed web/dist/*
+//var frontend embed.FS
+
 func main() {
+
 	database := db.NewService()
 	err := database.Start()
 	if err != nil {

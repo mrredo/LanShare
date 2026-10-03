@@ -1,14 +1,14 @@
-package admin
+package auth
 
 import (
+	"lanshare/config"
 	"lanshare/pkg/httputil"
+	"lanshare/pkg/str"
 	"net/http"
 	"time"
 
 	"github.com/gin-gonic/gin"
 )
-
-const SessionId = "session_id"
 
 type Handler struct {
 	service *Service
@@ -26,7 +26,7 @@ func (h *Handler) RegisterRoutes(rg *gin.RouterGroup) {
 }
 func (h *Handler) AuthMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		sessionID, err := c.Cookie("session_id")
+		sessionID, err := c.Cookie(config.AdminSessionCookie)
 		if err != nil {
 			c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{
 				"error": "Nav autorizēts",
@@ -34,7 +34,7 @@ func (h *Handler) AuthMiddleware() gin.HandlerFunc {
 			return
 		}
 
-		if !h.service.IsSessionValid(sessionID) {
+		if !h.service.IsAdminSessionValid(sessionID) {
 			c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{
 				"error": "Sesija nav derīga",
 			})
@@ -45,30 +45,47 @@ func (h *Handler) AuthMiddleware() gin.HandlerFunc {
 	}
 }
 
+// UserSession apply to all routes, so the user no matter what has a session
+func (h *Handler) UserSession() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		sessionID, err := c.Cookie(config.SessionCookie)
+		if err != nil || sessionID == "" {
+			sessionValue, err := str.GenerateRandomString(32)
+			if err != nil {
+				c.AbortWithStatus(http.StatusInternalServerError)
+				return
+			}
+			c.SetCookie(config.SessionCookie, sessionValue, config.SessionCookieAge, "/", "", config.CookiesOnHTTPSOnly, true)
+		}
+		c.Next()
+	}
+}
+
 func (h *Handler) CreateSession(c *gin.Context) {
 	session, err := h.service.CreateSession()
 	if err != nil {
 		c.JSON(400, gin.H{"error": err.Error()})
+		return
 	}
 	c.SetCookie(
-		SessionId,
+		config.AdminSessionCookie,
 		session.ID,
 		int(time.Until(session.ExpiresAt).Seconds()),
 		"/",
 		"",
-		true,
+		config.CookiesOnHTTPSOnly,
 		true,
 	)
 	c.JSON(200, gin.H{"message": "Veiksmīga pieslēgšanās"})
 }
 func (h *Handler) Logout(c *gin.Context) {
 	c.SetCookie(
-		SessionId,
+		config.AdminSessionCookie,
 		"",
 		-1,
 		"/",
 		"",
-		true,
+		config.CookiesOnHTTPSOnly,
 		true,
 	)
 	c.JSON(http.StatusOK, gin.H{

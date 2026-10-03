@@ -41,15 +41,15 @@ func TestGetInput_FromPostForm(t *testing.T) {
 	w := httptest.NewRecorder()
 	c, _ := gin.CreateTestContext(w)
 	formData := url.Values{
-		"username": {"admin"},
+		"username": {"auth"},
 	}
 	req, _ := http.NewRequest(http.MethodPost, "/test", strings.NewReader(formData.Encode()))
 	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 	c.Request = req
 
 	val, ok := GetInput(c, "username")
-	if !ok || val != "admin" {
-		t.Errorf("expected 'admin', true; got %s, %t", val, ok)
+	if !ok || val != "auth" {
+		t.Errorf("expected 'auth', true; got %s, %t", val, ok)
 	}
 }
 
