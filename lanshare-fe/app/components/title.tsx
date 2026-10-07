@@ -31,7 +31,7 @@ export default function LanShareTitle() {
             transformOrigin: "50% 100%",
         });
 
-        gsap.to(chars, {
+        const animation = gsap.to(chars, {
             y: 0,
             opacity: 1,
             rotateX: 0,
@@ -45,14 +45,14 @@ export default function LanShareTitle() {
         });
 
         return () => {
-            gsap.killTweensOf(chars);
+            animation.kill();
         };
     }, []);
 
     return (
         <h1
             ref={titleRef}
-            className="text-5xl font-black tracking-tight text-gray-900 md:text-6xl w-full text-center"
+            className="w-full text-center text-5xl font-black tracking-tight text-gray-900 md:text-6xl"
             style={{ perspective: "800px" }}
         >
             LanShare failu dalīšanās

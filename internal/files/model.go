@@ -19,3 +19,6 @@ type File struct {
 func (File) TableName() string {
 	return "files"
 }
+func (f File) IsExpired() bool {
+	return f.ExpiresAt != nil && time.Now().After(*f.ExpiresAt)
+}

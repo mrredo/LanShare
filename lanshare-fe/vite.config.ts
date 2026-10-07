@@ -7,4 +7,11 @@ export default defineConfig({
   resolve: {
     tsconfigPaths: true,
   },
+  server: {
+    proxy: {
+      "/api": {
+        target: "http://lanshare.local",
+      },
+    },
+  },
 });

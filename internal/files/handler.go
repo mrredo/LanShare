@@ -4,29 +4,112 @@ import (
 	"errors"
 	"fmt"
 	"lanshare/config"
+	"lanshare/internal/auth"
+	"lanshare/pkg/httputil"
 	"log"
 	"net/http"
 	"os"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 )
 
 type Handler struct {
-	service *Service
+	service     *Service
+	authHandler *auth.Handler
 }
 
-func NewHandler(service *Service) *Handler {
+func NewHandler(service *Service, authHandler *auth.Handler) *Handler {
 	return &Handler{
-		service: service,
+		service:     service,
+		authHandler: authHandler,
 	}
 }
 
-func (h *Handler) RegisterRoutes(rg *gin.RouterGroup) {
+func (h *Handler) RegisterRoutes(rg *gin.RouterGroup, fe *gin.RouterGroup) {
 	group := rg.Group("/files")
-	group.POST("/upload", h.UploadFile)
-	group.GET("/:file", h.DownloadFile)
-	group.DELETE("/:file", h.DeleteFile)
+	group.Use()
+	{
+		group.POST("/upload", h.UploadFile)
+		group.GET("/", h.FileList)
+		group.GET("/:file/download", h.DownloadFile)
+		group.GET("/:file", h.FileInfo)
+		group.DELETE("/:file", h.DeleteFile)
+	}
+	fe.GET("/share")
+	fe.GET("/files/:file")
+	fe.GET("/")
 }
+func (h *Handler) FileInfo(c *gin.Context) {
+	fileID := c.Param("file")
+
+	file, err := h.service.GetById(fileID)
+	response404 := gin.H{
+		"error": "Fails netika atrasts",
+	}
+	if err != nil || file.ID == "" {
+		c.JSON(http.StatusNotFound, response404)
+		return
+	}
+	if file.IsExpired() {
+		h.service.DeleteById(fileID)
+
+		c.JSON(http.StatusNotFound, response404)
+		return
+	}
+
+	c.JSON(200, gin.H{
+		"file": file,
+	})
+}
+
+func (h *Handler) FileList(c *gin.Context) {
+	getUserFiles := httputil.GetInputDefault(c, "my_files", "true") == "true"
+	getPublicFiles := httputil.GetInputDefault(c, "public_files", "true") == "true"
+
+	limitFilesStr, lfOk := httputil.GetInput(c, "limit")
+	limitUserFilesStr, lufOk := httputil.GetInput(c, "limit_my_files")
+	limitFiles, err := strconv.Atoi(limitFilesStr)
+	if err != nil || !lfOk {
+		limitFiles = -1
+	}
+	limitUserFiles, err := strconv.Atoi(limitUserFilesStr)
+	if err != nil || !lufOk {
+		limitFiles = -1
+	}
+
+	publicFiles := make([]File, 0)
+
+	response := gin.H{}
+
+	if getPublicFiles {
+		publicFiles, err = h.service.FindFileList(limitFiles)
+		if err != nil {
+			response["public_files_error"] = "Nevarēja atrast publiskos failus."
+		} else {
+			response["public_files"] = FilesToFileResponsefunc(publicFiles)
+		}
+	}
+
+	userFiles := make([]File, 0)
+
+	if getUserFiles {
+		cookie, err := c.Cookie(config.SessionCookie)
+		if err != nil {
+			response["user_files_error"] = "Lietotājs nav reģistrēts sistēmā."
+		} else {
+			userFiles, err = h.service.FindFileListForUser(cookie, limitUserFiles)
+			if err != nil {
+				response["user_files_error"] = "Nevarēja atrast lietotāja failus."
+			} else {
+				response["user_files"] = FilesToFileResponsefunc(userFiles)
+			}
+		}
+	}
+
+	c.JSON(200, response)
+}
+
 func (h *Handler) UploadFile(c *gin.Context) {
 	var dto UploadDTO
 
@@ -37,7 +120,7 @@ func (h *Handler) UploadFile(c *gin.Context) {
 		return
 	}
 
-	ownerCookie, err := c.Cookie("lanshare_owner")
+	ownerCookie, err := c.Cookie(config.SessionCookie)
 	if err != nil {
 		c.JSON(500, gin.H{
 			"error": "owner cookie not found",
@@ -78,24 +161,23 @@ func (h *Handler) DownloadFile(c *gin.Context) {
 
 	c.Header(
 		"Content-Disposition",
-		fmt.Sprintf(`attachment; filename="%s"`, file.Filename),
+		fmt.Sprintf(`attachment; filename="%s"`, *file.Filename),
 	)
 
 	c.File(*file.StoragePath)
 }
 
 func (h *Handler) DeleteFile(c *gin.Context) {
-	ownerCookie, err := c.Cookie(config.SessionCookie)
-	if err != nil {
-	}
-	adminCookie, err := c.Cookie(config.AdminSessionCookie)
-	if err != nil {
-	}
+	ownerCookie, _ := c.Cookie(config.SessionCookie)
+
+	adminCookie, _ := c.Cookie(config.AdminSessionCookie)
+
 	fileParam := c.Param("file")
 	file, err := h.service.GetById(fileParam)
 	if err != nil {
-		// TODO:
-
+		c.JSON(http.StatusNotFound, gin.H{
+			"error": "Fails netika atrasts",
+		})
 		return
 	}
 
@@ -106,8 +188,8 @@ func (h *Handler) DeleteFile(c *gin.Context) {
 		})
 		return
 	}
-	// pārbaudām, vai ir admin
-	if !h.service.authService.IsAdminSessionValid(adminCookie) {
+	// pārbaudām, vai nepieder fails un vai ir admin
+	if ownerCookie != file.OwnerCookie && !h.service.authService.IsAdminSessionValid(adminCookie) {
 		c.JSON(http.StatusForbidden, gin.H{
 			"error": "Tu neesi administrators!",
 		})
