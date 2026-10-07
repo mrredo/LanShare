@@ -1,6 +1,11 @@
-import { type RouteConfig, index } from "@react-router/dev/routes";
+import {type RouteConfig, index, route} from "@react-router/dev/routes";
 
 export default [
-    index("main/main.tsx")
+    index("route/main.tsx"),
+    route("/upload", "route/fileUpload.tsx"),
+    route("/files/:id", "route/fileView.tsx"),
+
+    route("/files/delete/:id", "route/file.delete.tsx")
+
 
 ] satisfies RouteConfig;

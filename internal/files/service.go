@@ -138,10 +138,6 @@ func (s *Service) CountAllFiles() (int64, error) {
 	return s.repo.CountAllFiles()
 }
 
-func (s *Service) GetAllByOwnerCookie(ownerCookie string) ([]File, error) {
-	return s.repo.GetAllByOwnerCookie(ownerCookie)
-}
-
 // DeleteAll removes all records from the underlying repository and returns an error if the operation fails.
 func (s *Service) DeleteAll() error {
 	return s.repo.DeleteAll()
@@ -157,6 +153,12 @@ func (s *Service) FindExpired() ([]File, error) {
 	return s.repo.FindExpired()
 }
 
-func (s *Service) DeleteExpired() error {
+func (s *Service) DeleteExpired() (count int64, err error) {
 	return s.repo.DeleteExpired()
+}
+func (s *Service) FindFileList(limit int) ([]File, error) {
+	return s.repo.GetAll(limit)
+}
+func (s *Service) FindFileListForUser(ownerCookie string, limit int) ([]File, error) {
+	return s.repo.GetAllByOwnerCookie(ownerCookie, limit)
 }

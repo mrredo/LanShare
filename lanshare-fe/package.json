@@ -1,5 +1,6 @@
 {
   "name": "lanshare-fe",
+  "proxy": "http://lanshare.local",
   "private": true,
   "type": "module",
   "scripts": {

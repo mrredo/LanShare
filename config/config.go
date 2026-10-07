@@ -1,5 +1,7 @@
 package config
 
+import "time"
+
 const (
 	DomainName           = "lanshare.local"
 	DefaultPort          = 80
@@ -17,4 +19,6 @@ const (
 
 	// SessionCookieAge In seconds
 	SessionCookieAge = 365 * 24 * 3600
+
+	FileExpirationCheckerTick = 5 * time.Minute
 )

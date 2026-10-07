@@ -40,14 +40,19 @@ func NewApp(args ...any) *App {
 
 	router := api.NewRouter(config.DefaultPort)
 	router.InitializeMiddlewares()
+	frontendGroup := router.Router().Group("/")
 	apiGroup := router.Router().Group("/api")
 	authGroup := router.Router().Group("/auth")
 
 	adminHandler := auth.NewHandler(adminService)
 	adminHandler.RegisterRoutes(authGroup)
 
-	filesHandler := files.NewHandler(filesService)
-	filesHandler.RegisterRoutes(apiGroup)
+	filesHandler := files.NewHandler(filesService, adminHandler)
+	filesHandler.RegisterRoutes(apiGroup, frontendGroup)
+
+	router.Router().Use(adminHandler.UserSessionMiddleware())
+
+	go files.NewFileExpirationTicker(filesService, config.FileExpirationCheckerTick).Start()
 
 	return &App{
 		DB:              dbService,

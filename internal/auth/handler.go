@@ -45,8 +45,8 @@ func (h *Handler) AuthMiddleware() gin.HandlerFunc {
 	}
 }
 
-// UserSession apply to all routes, so the user no matter what has a session
-func (h *Handler) UserSession() gin.HandlerFunc {
+// UserSessionMiddleware apply to all routes, so the user no matter what has a session
+func (h *Handler) UserSessionMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		sessionID, err := c.Cookie(config.SessionCookie)
 		if err != nil || sessionID == "" {

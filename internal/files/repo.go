@@ -31,9 +31,22 @@ func (r *Repo) GetById(id string) (File, error) {
 	tx := r.db.Where("id = ?", id).Find(&file)
 	return file, tx.Error
 }
-func (r *Repo) GetAllByOwnerCookie(ownerCookie string) ([]File, error) {
+func (r *Repo) GetAllByOwnerCookie(ownerCookie string, limit int) ([]File, error) {
 	var files []File
-	tx := r.db.Where("owner_cookie = ?", ownerCookie).Find(&files)
+	expr := r.db.Where("owner_cookie = ?", ownerCookie)
+	if limit == -1 {
+		expr = expr.Limit(limit)
+	}
+	tx := expr.Order("uploaded_at DESC").Find(&files)
+	return files, tx.Error
+}
+func (r *Repo) GetAll(limit int) ([]File, error) {
+	var files []File
+	expr := r.db
+	if limit == -1 {
+		expr = expr.Limit(limit)
+	}
+	tx := expr.Order("uploaded_at DESC").Find(&files)
 	return files, tx.Error
 }
 func (r *Repo) Create(entity *File) error {
@@ -54,7 +67,10 @@ func (r *Repo) FindExpired() ([]File, error) {
 	return expiredFiles, tx.Error
 }
 
-func (r *Repo) DeleteExpired() error {
+func (r *Repo) DeleteExpired() (count int64, err error) {
+	result := r.db.
+		Where("expires_at < ?", time.Now()).
+		Delete(&File{})
 
-	return r.db.Where("expires_at < ?", time.Now()).Delete(&File{}).Error
+	return result.RowsAffected, result.Error
 }
